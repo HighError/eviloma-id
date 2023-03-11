@@ -8,7 +8,7 @@ interface IProps {
 
 interface IUserContext {
   user?: {
-    id: string;
+    _id: string;
     username: string;
     email: string;
     private: boolean;

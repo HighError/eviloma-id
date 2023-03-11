@@ -71,7 +71,7 @@ export default function Home() {
                   data-tooltip-content={user?.private ? 'Приватний аккаунт' : 'Публічний аккаунт'}
                 />
               </div>
-              <div className="text-gray-400">{`ID: ${user?.id ?? ''}`}</div>
+              <div className="text-gray-400">{`ID: ${user?._id ?? ''}`}</div>
               <div className="text-gray-400">{`Email: ${user?.email ?? ''}`}</div>
               <div className="mt-5 flex flex-row">
                 <button
