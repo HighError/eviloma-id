@@ -8,7 +8,7 @@ const corsOptionsDelegate = function (
   req: NextApiRequestWithSession,
   callback: (error: Error | null, corsOptions: CorsOptions) => void
 ) {
-  const corsOptions: CorsOptions = { origin: whitelist.indexOf(req.headers.origin ?? '') !== -1 };
+  const corsOptions: CorsOptions = { origin: whitelist.indexOf(req.headers.origin ?? '') !== -1, credentials: true };
   callback(null, corsOptions);
 };
 
