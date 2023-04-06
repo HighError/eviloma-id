@@ -1,13 +1,11 @@
 import { faLink, faLock, faShare, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import md5 from 'md5';
 import Image from 'next/image';
 import Router from 'next/router';
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Tooltip } from 'react-tooltip';
-import { mutate } from 'swr';
 
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
@@ -23,7 +21,7 @@ export default function Home() {
     <Layout title="Eviloma ID - Профіль">
       <OnlyForAuth>
         <Header isLoading={isLoading} setIsLoading={setIsLoading} />
-        <div className="flex flex-col gap-6 px-4 pt-24 pb-3">
+        <div className="flex flex-col gap-6 px-4 pb-3 pt-24">
           <div className=" relative w-full rounded-lg bg-gray-800">
             <div className="flex h-40 w-full items-center justify-center gap-5 rounded-t-lg bg-gradient-to-r from-[#ad5389] to-[#3c1053]" />
             <div className="absolute top-24 px-10">
@@ -35,7 +33,7 @@ export default function Home() {
                 height="128"
               />
             </div>
-            <div className="flex w-full flex-col gap-1 rounded-lg bg-gray-800 px-10 pt-20 pb-5">
+            <div className="flex w-full flex-col gap-1 rounded-lg bg-gray-800 px-10 pb-5 pt-20">
               <div className="flex flex-row items-center gap-4 ">
                 <div className="text-3xl font-semibold">{`@${user?.username ?? ''}`}</div>
                 <FontAwesomeIcon
