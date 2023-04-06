@@ -15,6 +15,7 @@ import Input from '../components/inputs/Input';
 import PasswordInput from '../components/inputs/Passwordinput';
 import Layout from '../components/Layout';
 import OnlyForNotAuth from '../components/routesControllers/OnlyForNotAuth';
+import getExternalServiceLink from '../libs/external-services';
 
 type Inputs = {
   username: string;
@@ -58,7 +59,8 @@ const LoginPage = () => {
         toast.success('Успішна реєстрація');
         mutate('/api/user');
         if (redirect) {
-          router.push(encodeURI(redirect as string));
+          const link = encodeURI(getExternalServiceLink(redirect as string));
+          router.push(link);
         }
       })
       .catch((err: AxiosError) => toast.error((err.response?.data as string) ?? 'Невідома помилка'));

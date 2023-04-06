@@ -1,4 +1,5 @@
-import { NextApiRequestWithSession } from '../types/NextApiRequest';
+import { NextApiRequestWithSession } from '@/types/NextApiRequest';
+
 import { getLoginSession } from './auth';
 
 export default async function verifyAuth(req: NextApiRequestWithSession): Promise<string | null> {

@@ -5,11 +5,7 @@ import User from '@/models/User';
 
 import dbConnect from './db';
 
-export const localStrategy = new Local.Strategy(async function (
-  username: string,
-  password: string,
-  done: (error: Error | null, user?: false | typeof User | undefined, others?: { message: string }) => void
-) {
+export const localStrategy = new Local.Strategy(async function (username: string, password: string, done) {
   await dbConnect();
   const user = await User.findOne({ username }).select('+password');
   if (!user) {

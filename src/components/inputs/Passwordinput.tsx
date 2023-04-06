@@ -24,7 +24,7 @@ const PasswordInput = ({ id, label, error, register }: IProps) => {
           <FontAwesomeIcon className="w-10" icon={faLock} />
           <input
             className="flex-1 bg-[transparent] px-1 placeholder:text-gray-400 focus:outline-none"
-            placeholder=""
+            placeholder="********"
             id={id}
             type={showPassword ? 'text' : 'password'}
             {...register(id)}

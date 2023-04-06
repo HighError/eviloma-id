@@ -12,7 +12,7 @@ import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 export default nextConnect()
   .use(cors(corsOptionsDelegate))
   .options((res: NextApiResponse) => res.status(204).end())
-  .get(async (req: NextApiRequestWithSession, res: NextApiResponse) => {
+  .delete(async (req: NextApiRequestWithSession, res: NextApiResponse) => {
     try {
       await dbConnect();
       const session = await getLoginSession(req);
@@ -25,8 +25,13 @@ export default nextConnect()
         return res.status(401).end();
       }
 
-      res.status(200).json({ user });
+      user.discord = null;
+
+      await user.save();
+
+      res.status(200).end();
     } catch (err) {
+      console.log(err);
       if (err instanceof CustomError) {
         return res.status(err.code).send(err.message);
       }

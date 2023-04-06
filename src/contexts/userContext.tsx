@@ -12,6 +12,7 @@ interface IUserContext {
     username: string;
     email: string;
     private: boolean;
+    discord: string | null;
   };
   error?: AxiosError;
   isLoading: boolean;

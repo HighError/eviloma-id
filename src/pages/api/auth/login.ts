@@ -3,12 +3,11 @@ import { NextApiResponse } from 'next';
 import nextConnect from 'next-connect';
 import passport from 'passport';
 
+import { setLoginSession } from '@/libs/auth';
+import corsOptionsDelegate from '@/libs/cors';
+import { localStrategy } from '@/libs/passport-local';
 import { IUser } from '@/models/User';
-
-import { setLoginSession } from '../../../libs/auth';
-import corsOptionsDelegate from '../../../libs/cors';
-import { localStrategy } from '../../../libs/passport-local';
-import { NextApiRequestWithSession } from '../../../types/NextApiRequest';
+import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
 const authenticate = (method: 'local', req: NextApiRequestWithSession, res: NextApiResponse): Promise<IUser> =>
   new Promise((resolve, reject) => {

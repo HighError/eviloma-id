@@ -1,54 +1,28 @@
-import { faLock, faShare, faUnlock } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faLock, faShare, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import md5 from 'md5';
 import Image from 'next/image';
+import Router from 'next/router';
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Tooltip } from 'react-tooltip';
 import { mutate } from 'swr';
 
-import Layout from '../components/Layout';
-import OnlyForAuth from '../components/routesControllers/OnlyForAuth';
-import Service from '../components/Service';
-import { UserContext } from '../contexts/userContext';
+import Header from '@/components/Header';
+import Layout from '@/components/Layout';
+import OnlyForAuth from '@/components/routesControllers/OnlyForAuth';
+import Service from '@/components/Service';
+import { UserContext } from '@/contexts/userContext';
 
 export default function Home() {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
 
-  async function logout() {
-    setIsLoading(true);
-    try {
-      const res = await axios.post('/api/auth/logout');
-      if (res.status !== 200) {
-        throw new Error('');
-      }
-      toast.success('Успішний вихід');
-      mutate('/api/user', { data: null, error: null });
-    } catch (err) {
-      toast.error('Помилка серверу');
-      console.log(err);
-    }
-  }
-
   return (
     <Layout title="Eviloma ID - Профіль">
       <OnlyForAuth>
-        <div className="fixed top-0 z-50 flex h-20 w-full flex-row items-center justify-between gap-8 rounded-b-lg bg-gray-800 px-8">
-          <div />
-          <div className="flex flex-row items-center gap-2">
-            <Image className="object-contain" src="/logo.webp" alt="logo" width="64" height="64" />
-            <h1 className="text-4xl font-bold">Eviloma ID</h1>
-          </div>
-          <button
-            disabled={isLoading}
-            className="rounded-lg bg-purple-800 px-5 py-3 duration-300 hover:bg-purple-700"
-            onClick={() => logout()}
-          >
-            Вийти
-          </button>
-        </div>
+        <Header isLoading={isLoading} setIsLoading={setIsLoading} />
         <div className="flex flex-col gap-6 px-4 pt-24 pb-3">
           <div className=" relative w-full rounded-lg bg-gray-800">
             <div className="flex h-40 w-full items-center justify-center gap-5 rounded-t-lg bg-gradient-to-r from-[#ad5389] to-[#3c1053]" />
@@ -73,7 +47,7 @@ export default function Home() {
               </div>
               <div className="text-gray-400">{`ID: ${user?._id ?? ''}`}</div>
               <div className="text-gray-400">{`Email: ${user?.email ?? ''}`}</div>
-              <div className="mt-5 flex flex-row">
+              <div className="mt-5 flex flex-row gap-2">
                 <button
                   disabled={user?.private || isLoading}
                   onClick={() =>
@@ -87,6 +61,13 @@ export default function Home() {
                 >
                   <FontAwesomeIcon icon={faShare} />
                   <div>Поділитись профілем</div>
+                </button>
+                <button
+                  onClick={() => Router.push('/connections')}
+                  className="flex flex-row items-center justify-center gap-2 rounded-lg bg-purple-800 px-5 py-3 duration-300 hover:bg-purple-700 disabled:bg-gray-700"
+                >
+                  <FontAwesomeIcon icon={faLink} />
+                  <div>З&apos;єднання</div>
                 </button>
               </div>
             </div>

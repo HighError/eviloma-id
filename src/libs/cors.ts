@@ -1,6 +1,6 @@
 import { CorsOptions } from 'cors';
 
-import { NextApiRequestWithSession } from '../types/NextApiRequest';
+import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
 const whitelist = (process.env.CORS ?? '').split(',');
 

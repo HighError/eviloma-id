@@ -5,6 +5,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   private: boolean;
+  discord: string | null;
 }
 
 const userSchema = new mongoose.Schema({
@@ -27,6 +28,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
     default: true,
+  },
+  discord: {
+    type: String,
+    default: null,
   },
 });
 
