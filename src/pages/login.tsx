@@ -15,9 +15,9 @@ import * as yup from 'yup';
 
 import getCallbackErrorMessage from '@/libs/callback-errors';
 
+import AnimatedLayout from '../components/AnimatedLayout';
 import Input from '../components/inputs/Input';
 import PasswordInput from '../components/inputs/Passwordinput';
-import Layout from '../components/Layout';
 import OnlyForNotAuth from '../components/routesControllers/OnlyForNotAuth';
 import getExternalServiceLink from '../libs/external-services';
 
@@ -67,11 +67,8 @@ const LoginPage = () => {
   }, [callback_error]);
 
   return (
-    <Layout title="Eviloma ID - Вхід">
+    <AnimatedLayout title="Eviloma ID - Вхід" enableBackground>
       <OnlyForNotAuth>
-        <Head>
-          <title>Eviloma ID - Вхід</title>
-        </Head>
         <div className="flex h-full select-none flex-row">
           <div className="flex w-screen items-center justify-center px-2 duration-300 tablet:w-7/12 laptop:w-5/12">
             <div className="flex flex-col gap-5 rounded-lg px-3 py-2">
@@ -125,7 +122,7 @@ const LoginPage = () => {
           </div>
         </div>
       </OnlyForNotAuth>
-    </Layout>
+    </AnimatedLayout>
   );
 };
 

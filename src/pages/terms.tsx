@@ -1,14 +1,14 @@
 import Markdown from 'markdown-to-jsx';
 import React from 'react';
 
-import Layout from '../components/Layout';
+import AnimatedLayout from '../components/AnimatedLayout';
 import terms from '../terms.md';
 
 const MyParagraph = ({ children, ...props }: any) => <div {...props}>{children}</div>;
 
 const Terms = () => {
   return (
-    <Layout title="Eviloma ID - Правила та умови">
+    <AnimatedLayout title="Eviloma ID - Правила та умови" enableBackground>
       <Markdown
         className="overflow-auto p-5"
         options={{
@@ -36,7 +36,7 @@ const Terms = () => {
       >
         {terms}
       </Markdown>
-    </Layout>
+    </AnimatedLayout>
   );
 };
 

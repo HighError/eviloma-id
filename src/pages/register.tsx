@@ -11,9 +11,9 @@ import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
 import * as yup from 'yup';
 
+import AnimatedLayout from '../components/AnimatedLayout';
 import Input from '../components/inputs/Input';
 import PasswordInput from '../components/inputs/Passwordinput';
-import Layout from '../components/Layout';
 import OnlyForNotAuth from '../components/routesControllers/OnlyForNotAuth';
 import getExternalServiceLink from '../libs/external-services';
 
@@ -68,11 +68,8 @@ const LoginPage = () => {
   };
 
   return (
-    <Layout title="Eviloma ID - Реєстрація">
+    <AnimatedLayout title="Eviloma ID - Реєстрація" enableBackground>
       <OnlyForNotAuth>
-        <Head>
-          <title>Eviloma ID - Реєстрація</title>
-        </Head>
         <div className="flex h-full select-none flex-row">
           <div className="flex w-screen items-center justify-center px-2 duration-300 tablet:w-7/12 laptop:w-5/12">
             <div className="flex flex-col gap-5 rounded-lg px-3 py-2">
@@ -143,7 +140,7 @@ const LoginPage = () => {
           </div>
         </div>
       </OnlyForNotAuth>
-    </Layout>
+    </AnimatedLayout>
   );
 };
 

@@ -1,24 +1,29 @@
-import { motion } from 'framer-motion';
-import Head from 'next/head';
-import React, { ReactNode } from 'react';
+import Image from 'next/image';
+import React from 'react';
 
-const Layout = ({ children, title }: { children: ReactNode; title: string }) => {
+import AnimatedLayout from '@/components/AnimatedLayout';
+import ProfileMenu from '@/components/profile/ProfileMenu';
+import OnlyForAuth from '@/components/routesControllers/OnlyForAuth';
+
+interface IProps {
+  children: React.ReactNode;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+}
+
+export default function Layout({ children, isLoading, setIsLoading, title }: IProps) {
   return (
-    <>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <motion.div
-        className="h-fulldvh"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-      >
+    <AnimatedLayout title={title}>
+      <OnlyForAuth>
         {children}
-      </motion.div>
-    </>
+        <div className="absolute right-5 top-5 z-10">
+          <ProfileMenu isLoading={isLoading} setIsLoading={setIsLoading} />
+        </div>
+        <div className="fixed inset-0 -z-10">
+          <Image src="/profile-banner.png" alt="profile-banner" fill className="object-cover object-left" />
+        </div>
+      </OnlyForAuth>
+    </AnimatedLayout>
   );
-};
-
-export default Layout;
+}
