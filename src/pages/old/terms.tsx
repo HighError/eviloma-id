@@ -1,8 +1,8 @@
 import Markdown from 'markdown-to-jsx';
 import React from 'react';
 
-import AnimatedLayout from '../components/AnimatedLayout';
-import terms from '../terms.md';
+import AnimatedLayout from '../../components/AnimatedLayout';
+import terms from '../../terms.md';
 
 const MyParagraph = ({ children, ...props }: any) => <div {...props}>{children}</div>;
 

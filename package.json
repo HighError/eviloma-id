@@ -11,7 +11,8 @@
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
     "test-all": "yarn check-format && yarn check-lint && yarn check-types && yarn build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typesafe-i18n": "typesafe-i18n"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -34,6 +35,7 @@
     "mongoose": "^7.0.3",
     "next": "13.2.4",
     "next-connect": "^0.13.0",
+    "next-translate": "^2.0.4",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
     "passport-local": "^1.0.0",
@@ -69,6 +71,7 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-tailwindcss": "^3.10.1",
     "husky": "^8.0.0",
+    "next-translate-plugin": "^2.0.4",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.6",

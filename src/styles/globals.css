@@ -35,6 +35,7 @@ body {
   color: #f7f7f7;
   margin: 0;
   padding: 0;
+  background: url('/background.png') fixed left center / cover no-repeat;
 }
 
 body {
@@ -46,11 +47,11 @@ body {
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 1) inset;
+  -webkit-box-shadow: 0 0 0 1000px rgba(67, 67, 67, 1) inset;
   -webkit-text-fill-color: #f7f7f7;
 }
 
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 50px rgba(0, 0, 0, 1) inset;
+  -webkit-box-shadow: 0 0 0 50px rgba(67, 67, 67, 1) inset;
   -webkit-text-fill-color: #f7f7f7;
 }

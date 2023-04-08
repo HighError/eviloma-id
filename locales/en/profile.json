@@ -1,0 +1,8 @@
+{
+  "title": "Eviloma ID - Profile",
+  "privateProfile": "Private",
+  "publicProfile": "Public",
+  "comingSoon": "Coming Soon",
+  "discordDontConnected": "Not connected",
+  "discordConnectedButFailLoadingName": "Connected"
+}

@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 
 import Header from '@/components/Header';
 
-import AnimatedLayout from '../components/AnimatedLayout';
-import Connection from '../components/Connection';
-import OnlyForAuth from '../components/routesControllers/OnlyForAuth';
+import AnimatedLayout from '../../components/AnimatedLayout';
+import Connection from '../../components/Connection';
+import OnlyForAuth from '../../components/routesControllers/OnlyForAuth';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);

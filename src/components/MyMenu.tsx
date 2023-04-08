@@ -1,8 +1,9 @@
-import { faBoxesStacked, faLink, faPen, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBoxesStacked, faLink, faPen, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
 import axios from 'axios';
 import Router from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment } from 'react';
 import toast from 'react-hot-toast';
 import { mutate } from 'swr';
@@ -12,7 +13,9 @@ interface IProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
+export default function MyMenu({ isLoading, setIsLoading }: IProps) {
+  const { t: tNotification } = useTranslation('notification');
+  const { t: tMenu } = useTranslation('menu');
   async function logout() {
     setIsLoading(true);
     try {
@@ -23,9 +26,9 @@ export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
       }
       await mutate('/api/user', { data: null, error: null });
       Router.push('/login');
-      toast.success('Успішний вихід');
+      toast.success(tNotification('successfulExit'));
     } catch (err) {
-      toast.error('Помилка серверу');
+      toast.error(tNotification('serverError'));
     }
   }
   const menuItems = [
@@ -35,7 +38,7 @@ export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
         {
           disabled: false,
           slug: 'profile',
-          name: 'Профіль',
+          name: tMenu('profile'),
           icon: faUser,
           onClick: () => {
             Router.push('/');
@@ -44,7 +47,7 @@ export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
         {
           disabled: false,
           slug: 'services',
-          name: 'Наші сервіси',
+          name: tMenu('services'),
           icon: faBoxesStacked,
           onClick: () => {
             Router.push('/services');
@@ -58,7 +61,7 @@ export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
         {
           disabled: true,
           slug: 'edit-profile',
-          name: 'Редагувати профіль',
+          name: tMenu('editProfile'),
           icon: faPen,
           onClick: () => {
             Router.push('/edit');
@@ -66,8 +69,8 @@ export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
         },
         {
           disabled: true,
-          slug: 'link-profile',
-          name: "З'єднання",
+          slug: 'connections-profile',
+          name: tMenu('connectionsProfile'),
           icon: faLink,
           onClick: () => {
             Router.push('/edit');
@@ -76,7 +79,7 @@ export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
         {
           disabled: false,
           slug: 'logout',
-          name: 'Вийти',
+          name: tMenu('logout'),
           icon: faRightFromBracket,
           onClick: () => {
             logout();
@@ -94,7 +97,7 @@ export default function ProfileMenu({ isLoading, setIsLoading }: IProps) {
             disabled={isLoading}
             className="rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-600"
           >
-            Меню
+            <FontAwesomeIcon icon={faBars} className="mr-2 w-4" /> {tMenu('title')}
           </button>
         </Menu.Button>
         <Transition

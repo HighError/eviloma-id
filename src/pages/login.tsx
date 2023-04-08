@@ -1,61 +1,62 @@
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios, { AxiosError } from 'axios';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
 import * as yup from 'yup';
 
+import AnimatedLayout from '@/components/AnimatedLayout';
+import Input from '@/components/inputs/Input';
+import PasswordInput from '@/components/inputs/Passwordinput';
+import OnlyForNotAuth from '@/components/routesControllers/OnlyForNotAuth';
+import SocialButton from '@/components/SocialButton';
 import getCallbackErrorMessage from '@/libs/callback-errors';
-
-import AnimatedLayout from '../components/AnimatedLayout';
-import Input from '../components/inputs/Input';
-import PasswordInput from '../components/inputs/Passwordinput';
-import OnlyForNotAuth from '../components/routesControllers/OnlyForNotAuth';
-import getExternalServiceLink from '../libs/external-services';
+import getExternalServiceLink from '@/libs/external-services';
 
 type Inputs = {
   username: string;
   password: string;
 };
 
-const schema = yup
-  .object({
-    username: yup.string().required("Це поле обов'язкове"),
-    password: yup.string().required("Це поле обов'язкове"),
-  })
-  .required();
-
-const LoginPage = () => {
+export default function Login() {
   const router = useRouter();
+  const { t } = useTranslation('login');
+  const { t: tNotification } = useTranslation('notification');
+  const [isLoading, setIsLoading] = useState(false);
   const redirect = router.query['redirect'];
   let callback_error = router.query['callback_error'];
-  const [isLoading, setIsLoading] = useState(false);
+
+  const schema = yup
+    .object({
+      username: yup.string().required(t('requiredField')),
+      password: yup.string().required(t('requiredField')),
+    })
+    .required();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     setIsLoading(true);
     axios
       .post('/api/auth/login', data)
       .then(() => {
-        toast.success('Успішний вхід');
+        toast.success(tNotification('loginSuccessful'));
         if (redirect) {
           const link = encodeURI(getExternalServiceLink(redirect as string));
           router.push(link);
         }
         mutate('/api/user');
       })
-      .catch((err: AxiosError) => toast.error((err.response?.data as string) ?? 'Невідома помилка'));
+      .catch((err: AxiosError) => toast.error((err.response?.data as string) ?? tNotification('unknownError')));
     setIsLoading(false);
   };
 
@@ -67,63 +68,35 @@ const LoginPage = () => {
   }, [callback_error]);
 
   return (
-    <AnimatedLayout title="Eviloma ID - Вхід" enableBackground>
+    <AnimatedLayout title={t('title')}>
       <OnlyForNotAuth>
-        <div className="flex h-full select-none flex-row">
-          <div className="flex w-screen items-center justify-center px-2 duration-300 tablet:w-7/12 laptop:w-5/12">
-            <div className="flex flex-col gap-5 rounded-lg px-3 py-2">
-              <div>
-                <Image className="object-contain" src="/logo.webp" alt="logo" width="100" height="100" />
-                <h1 className="text-3xl font-bold">Eviloma ID - Вхід</h1>
-                <span className="text-sm text-gray-400">Увійдіть в систему Eviloma</span>
-              </div>
-              <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex flex-col gap-1">
-                  <Input
-                    id="username"
-                    label="Логін"
-                    placeholder="Username"
-                    icon={faUser}
-                    register={register}
-                    error={errors.username}
-                  />
-                  <PasswordInput id="password" label="Пароль" register={register} error={errors.password} />
-                </div>
-                <button
-                  className="rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:scale-105 hover:bg-purple-700 disabled:bg-gray-800"
-                  type="submit"
-                  disabled={isLoading}
-                >
-                  Увійти
-                </button>
-              </form>
-              <div className="grid grid-cols-7">
-                <button
-                  className="rounded-lg bg-[#7289da] p-2 duration-300 hover:bg-purple-700 disabled:bg-gray-800"
-                  disabled={isLoading}
-                  onClick={() => Router.push('/api/auth/discord')}
-                >
-                  <FontAwesomeIcon icon={faDiscord} />
-                </button>
-              </div>
-              <div>
-                {'Ще не маєте аккаунта? '}
-                <Link
-                  href={`/register?redirect=${redirect ?? ''}`}
-                  className="text-purple-800 duration-300 hover:text-purple-600"
-                >
-                  Зареєструватись
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="relative h-full duration-300 tablet:w-5/12 laptop:w-7/12">
-            <Image className="object-cover" src="/login.webp" alt="" fill priority sizes="100vw" />
+        <div className="relative left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-800 p-4 shadow-lg shadow-gray-900 tablet:px-8 tablet:py-6">
+          <h2 className="text-center text-3xl font-semibold">{t('titleH3')}</h2>
+          <form className="mt-2 flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              id="username"
+              label={t('username')}
+              placeholder="Username"
+              icon={faUser}
+              register={register}
+              error={errors.username}
+            />
+            <PasswordInput id="password" label={t('password')} register={register} error={errors.password} />
+            <button
+              className="mt-3 rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:scale-105 hover:bg-purple-700 disabled:bg-gray-700"
+              type="submit"
+              disabled={isLoading}
+            >
+              {t('logIn')}
+            </button>
+          </form>
+          <div className="my-2 h-[1px] w-full rounded-full bg-gray-50" />
+          <div className="grid grid-cols-6 gap-3">
+            <SocialButton isLoading={true} onClick={() => Router.push('#')} icon={faGoogle} />
+            <SocialButton isLoading={isLoading} onClick={() => Router.push('/api/auth/discord')} icon={faDiscord} />
           </div>
         </div>
       </OnlyForNotAuth>
     </AnimatedLayout>
   );
-};
-
-export default LoginPage;
+}

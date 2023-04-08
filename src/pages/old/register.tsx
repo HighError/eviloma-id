@@ -11,11 +11,11 @@ import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
 import * as yup from 'yup';
 
-import AnimatedLayout from '../components/AnimatedLayout';
-import Input from '../components/inputs/Input';
-import PasswordInput from '../components/inputs/Passwordinput';
-import OnlyForNotAuth from '../components/routesControllers/OnlyForNotAuth';
-import getExternalServiceLink from '../libs/external-services';
+import AnimatedLayout from '../../components/AnimatedLayout';
+import Input from '../../components/inputs/Input';
+import PasswordInput from '../../components/inputs/Passwordinput';
+import OnlyForNotAuth from '../../components/routesControllers/OnlyForNotAuth';
+import getExternalServiceLink from '../../libs/external-services';
 
 type Inputs = {
   username: string;
