@@ -6,7 +6,7 @@ import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 import React, { useContext, useEffect } from 'react';
 
-import Layout from '@/components/Layout';
+import Layout from '@/components/layouts/Layout';
 import ProfileData from '@/components/ProfileData';
 import { UserContext } from '@/contexts/userContext';
 

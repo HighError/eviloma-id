@@ -2,5 +2,12 @@
  "successfulExit": "Успішний вихід",
  "serverError": "Помилка серверу",
  "loginSuccessful": "Успішний вхід",
- "unknownError": "Невідома помилка"
+ "unknownError": "Невідома помилка",
+
+ "discordAccountNotFound": "Користувача з таким Discord не знайдено",
+ "invalidLoginOrPassword": "Невірний логін або пароль",
+ "paramsMissing": "Один або декілька параметрів не задано",
+ "invalidId": "Невірний ID",
+ "registerLoginExists": "Користувач з таким Login вже зареєстрований",
+ "registerEmailExists": "Користувач з таким Email вже зареєстрований"
 }

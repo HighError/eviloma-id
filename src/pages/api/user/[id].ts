@@ -22,17 +22,17 @@ export default nextConnect()
       const { id } = req.query;
 
       if (!id || !mongoose.isValidObjectId(id)) {
-        return res.status(400).end();
+        return res.status(400).end('ERR_INVALID_ID');
       }
 
       const user = await User.findById(id);
 
       if (!user) {
-        return res.status(400).end();
+        return res.status(400).end('ERR_UNKNOWN');
       }
 
       return res.status(200).json(user);
     } catch (error) {
-      return res.status(500).end('Authentication token is invalid, please log in');
+      return res.status(500).end('ERR_SERVER');
     }
   });

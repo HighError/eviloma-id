@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-import AnimatedLayout from '@/components/AnimatedLayout';
+import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import MyMenu from '@/components/MyMenu';
 import OnlyForAuth from '@/components/routesControllers/OnlyForAuth';
 

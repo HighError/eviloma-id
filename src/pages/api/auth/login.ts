@@ -31,7 +31,7 @@ export default nextConnect()
       const user = await authenticate('local', req, res);
 
       if (!user) {
-        throw new Error('Невірний логін або пароль');
+        throw new Error('ERR_INVALID_LOGIN_OR_PASSWORD');
       }
 
       const session = { id: user.id };

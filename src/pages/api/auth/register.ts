@@ -3,11 +3,10 @@ import cors from 'cors';
 import { NextApiResponse } from 'next';
 import nextConnect from 'next-connect';
 
+import { setLoginSession } from '@/libs/auth';
+import corsOptionsDelegate from '@/libs/cors';
 import User from '@/models/User';
-
-import { setLoginSession } from '../../../libs/auth';
-import corsOptionsDelegate from '../../../libs/cors';
-import { NextApiRequestWithSession } from '../../../types/NextApiRequest';
+import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
 export default nextConnect()
   .use(cors(corsOptionsDelegate))
@@ -16,17 +15,17 @@ export default nextConnect()
     try {
       const { username, email, password } = req.body;
       if (!username || !password) {
-        return res.status(400).send('Один або декілька параметрів не задано');
+        return res.status(400).send('ERR_MISSING_PARAMS');
       }
 
       const existLoginUser = await User.findOne({ username });
       if (existLoginUser) {
-        return res.status(400).send('Користувач з таким логіном вже існує');
+        return res.status(400).send('ERR_LOGIN_EXISTS');
       }
 
       const existEmailUser = await User.findOne({ email });
       if (existEmailUser) {
-        return res.status(400).send('Користувач з таким e-mail вже існує');
+        return res.status(400).send('ERR_PASSWORD_EXISTS');
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);

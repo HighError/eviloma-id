@@ -9,13 +9,13 @@ export const localStrategy = new Local.Strategy(async function (username: string
   await dbConnect();
   const user = await User.findOne({ username }).select('+password');
   if (!user) {
-    return done(Error('Невірний логін або пароль'));
+    return done(Error('ERR_INVALID_LOGIN_OR_PASSWORD'));
   }
 
   const matchPassword = await bcrypt.compare(password, user.password);
 
   if (!matchPassword) {
-    return done(Error('Невірний логін або пароль'));
+    return done(Error('ERR_INVALID_LOGIN_OR_PASSWORD'));
   }
 
   return done(null, user);

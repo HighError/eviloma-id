@@ -2,9 +2,9 @@ import cors from 'cors';
 import { NextApiResponse } from 'next';
 import nextConnect from 'next-connect';
 
-import { removeTokenCookie } from '../../../libs/auth-cookies';
-import corsOptionsDelegate from '../../../libs/cors';
-import { NextApiRequestWithSession } from '../../../types/NextApiRequest';
+import { removeTokenCookie } from '@/libs/auth-cookies';
+import corsOptionsDelegate from '@/libs/cors';
+import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
 export default nextConnect()
   .use(cors(corsOptionsDelegate))

@@ -30,6 +30,6 @@ export default nextConnect()
       if (err instanceof CustomError) {
         return res.status(err.code).send(err.message);
       }
-      return res.status(500).end('Server error');
+      return res.status(500).end('ERR_SERVER');
     }
   });

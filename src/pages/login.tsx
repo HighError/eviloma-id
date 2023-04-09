@@ -10,12 +10,13 @@ import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
 import * as yup from 'yup';
 
-import AnimatedLayout from '@/components/AnimatedLayout';
 import Input from '@/components/inputs/Input';
 import PasswordInput from '@/components/inputs/Passwordinput';
+import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import OnlyForNotAuth from '@/components/routesControllers/OnlyForNotAuth';
 import SocialButton from '@/components/SocialButton';
 import getCallbackErrorMessage from '@/libs/callback-errors';
+import getErrorMessage from '@/libs/error-codes';
 import getExternalServiceLink from '@/libs/external-services';
 
 type Inputs = {
@@ -26,7 +27,7 @@ type Inputs = {
 export default function Login() {
   const router = useRouter();
   const { t } = useTranslation('login');
-  const { t: tNotification } = useTranslation('notification');
+  const { t: tNotification } = useTranslation('notifications');
   const [isLoading, setIsLoading] = useState(false);
   const redirect = router.query['redirect'];
   let callback_error = router.query['callback_error'];
@@ -44,20 +45,16 @@ export default function Login() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
-    axios
-      .post('/api/auth/login', data)
-      .then(() => {
-        toast.success(tNotification('loginSuccessful'));
-        if (redirect) {
-          const link = encodeURI(getExternalServiceLink(redirect as string));
-          router.push(link);
-        }
-        mutate('/api/user');
-      })
-      .catch((err: AxiosError) => toast.error((err.response?.data as string) ?? tNotification('unknownError')));
-    setIsLoading(false);
+    try {
+      const res = await axios.post('/api/auth/login', data);
+      await mutate('/api/user');
+      toast.success(tNotification('loginSuccessful'));
+    } catch (err: any) {
+      toast.error(tNotification(getErrorMessage(tNotification, err.response?.data as string) ?? 'unknownError'));
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {

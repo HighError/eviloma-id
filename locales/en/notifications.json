@@ -2,5 +2,12 @@
   "successfulExit": "Successful exit",
   "serverError": "Server error",
   "loginSuccessful": "Login successful",
-  "unknownError": "Unknown error"
+  "unknownError": "Unknown error",
+
+  "discordAccountNotFound": "No user found with this Discord",
+  "invalidLoginOrPassword": "Invalid login or password",
+  "paramsMissing": "One or more parameters are not specified",
+  "invalidId": "Invalid ID",
+  "registerLoginExists": "The user with this Login is already registered",
+  "registerEmailExists": "The user with this Email is already registered"
 }

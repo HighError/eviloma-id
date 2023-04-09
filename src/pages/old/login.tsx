@@ -15,9 +15,9 @@ import * as yup from 'yup';
 
 import getCallbackErrorMessage from '@/libs/callback-errors';
 
-import AnimatedLayout from '../../components/AnimatedLayout';
 import Input from '../../components/inputs/Input';
 import PasswordInput from '../../components/inputs/Passwordinput';
+import AnimatedLayout from '../../components/layouts/AnimatedLayout';
 import OnlyForNotAuth from '../../components/routesControllers/OnlyForNotAuth';
 import getExternalServiceLink from '../../libs/external-services';
 

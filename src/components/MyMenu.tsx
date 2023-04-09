@@ -14,7 +14,7 @@ interface IProps {
 }
 
 export default function MyMenu({ isLoading, setIsLoading }: IProps) {
-  const { t: tNotification } = useTranslation('notification');
+  const { t: tNotification } = useTranslation('notifications');
   const { t: tMenu } = useTranslation('menu');
   async function logout() {
     setIsLoading(true);
@@ -109,7 +109,7 @@ export default function MyMenu({ isLoading, setIsLoading }: IProps) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 top-12 max-h-96 w-max gap-1 divide-y divide-gray-100 overflow-auto rounded-lg bg-gray-600 p-2 shadow-2xl shadow-gray-900 tablet:mt-2 tablet:max-h-60">
+          <Menu.Items className="absolute right-0 top-12 max-h-[75vh] w-max gap-1 divide-y divide-gray-100 overflow-auto rounded-lg bg-gray-600 p-2 shadow-2xl shadow-gray-900 tablet:mt-2">
             {menuItems.map((group) => (
               <div key={group.slug}>
                 {group.items.map((item) => (

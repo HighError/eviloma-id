@@ -21,7 +21,7 @@ export default nextConnect()
       const user = await authenticate('discord', req, res);
 
       if (!user) {
-        throw new Error('Користувача з таким Discord не знайдено');
+        throw new Error();
       }
 
       const session = { id: user.id };
