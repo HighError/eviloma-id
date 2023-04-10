@@ -4,8 +4,9 @@ module.exports = {
   defaultLocale: defaultLocale,
   locales: [defaultLocale],
   pages: {
-    '*': ['notifications', 'menu'],
+    '*': ['notifications', 'menu', 'common'],
     '/': ['profile'],
     '/login': ['login'],
+    '/services': ['services'],
   },
 };

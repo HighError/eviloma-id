@@ -67,7 +67,7 @@ export default function Login() {
   return (
     <AnimatedLayout title={t('title')}>
       <OnlyForNotAuth>
-        <div className="relative left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-800 p-4 shadow-lg shadow-gray-900 tablet:px-8 tablet:py-6">
+        <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-800 p-4 shadow-lg shadow-gray-900 tablet:px-8 tablet:py-6">
           <h2 className="text-center text-3xl font-semibold">{t('titleH3')}</h2>
           <form className="mt-2 flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
             <Input

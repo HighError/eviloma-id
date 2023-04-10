@@ -14,7 +14,7 @@ const AnimatedLayout = ({ children, title, enableBackground }: IProps) => {
         <title>{title}</title>
       </Head>
       <motion.div
-        className={`h-fulldvh ${enableBackground && 'bg-gray-900'}`}
+        className={`min-h-[100dvh] ${enableBackground && 'bg-gray-900'}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
