@@ -42,7 +42,7 @@
     "react-hook-form": "^7.43.8",
     "react-hot-toast": "^2.4.0",
     "react-spinners-kit": "^1.9.1",
-    "react-tooltip": "^5.10.0",
+    "react-tooltip": "^5.11.1",
     "sharp": "^0.32.0",
     "swr": "^2.1.0",
     "yup": "^1.0.2"
