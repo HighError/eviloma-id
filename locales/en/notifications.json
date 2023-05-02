@@ -2,6 +2,7 @@
   "successfulExit": "Successful exit",
   "serverError": "Server error",
   "loginSuccessful": "Login successful",
+  "registerSuccessful": "Registration successful",
   "unknownError": "Unknown error",
 
   "discordAccountNotFound": "No user found with this Discord",

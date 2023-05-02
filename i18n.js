@@ -1,4 +1,4 @@
-const defaultLocale = process.env.LOCALE ?? 'uk';
+const defaultLocale = process.env.LOCALE ?? 'en';
 
 module.exports = {
   defaultLocale: defaultLocale,
@@ -7,6 +7,7 @@ module.exports = {
     '*': ['notifications', 'menu', 'common'],
     '/': ['profile'],
     '/login': ['login'],
+    '/register': ['register'],
     '/services': ['services'],
   },
 };

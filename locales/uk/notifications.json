@@ -2,6 +2,7 @@
  "successfulExit": "Успішний вихід",
  "serverError": "Помилка серверу",
  "loginSuccessful": "Успішний вхід",
+ "registerSuccessful": "Успішна реєстрація",
  "unknownError": "Невідома помилка",
 
  "discordAccountNotFound": "Користувача з таким Discord не знайдено",

@@ -38,7 +38,7 @@ export default function Index() {
       <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-800 px-8 py-6 shadow-lg shadow-gray-900">
         <div className="mx-auto w-32 rounded-full bg-gray-50 p-1">
           <Image
-            className="rounded-full"
+            className="select-none rounded-full"
             src={`https://www.gravatar.com/avatar/${md5(user?.email ?? '0')}?s=128`}
             unoptimized
             priority

@@ -4,5 +4,8 @@
   "username": "Логін",
   "password": "Пароль",
   "logIn": "Увійти",
-  "requiredField": "Це поле обов'язкове"
+  "requiredField": "Це поле обов'язкове",
+
+  "toRegister1": "Не зареєстрований користувач?",
+  "toRegister2": "Зареєструватися"
 }

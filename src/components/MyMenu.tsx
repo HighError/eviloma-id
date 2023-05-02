@@ -95,7 +95,7 @@ export default function MyMenu({ isLoading, setIsLoading }: IProps) {
         <Menu.Button>
           <button
             disabled={isLoading}
-            className="rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-600"
+            className="select-none rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-600"
           >
             <FontAwesomeIcon icon={faBars} className="mr-2 w-4" /> {tMenu('title')}
           </button>
