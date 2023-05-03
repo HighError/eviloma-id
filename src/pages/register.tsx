@@ -1,9 +1,7 @@
-import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faAt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -15,7 +13,7 @@ import Input from '@/components/inputs/Input';
 import PasswordInput from '@/components/inputs/Passwordinput';
 import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import OnlyForNotAuth from '@/components/routesControllers/OnlyForNotAuth';
-import SocialButton from '@/components/SocialButton';
+import TermsAndConditions from '@/components/TermsAndConditions';
 import getErrorMessage from '@/libs/error-codes';
 
 type Inputs = {
@@ -25,7 +23,6 @@ type Inputs = {
   confirmPassword: string;
 };
 export default function Register() {
-  const router = useRouter();
   const { t } = useTranslation('register');
   const { t: tNotification } = useTranslation('notifications');
   const [isLoading, setIsLoading] = useState(false);
@@ -86,6 +83,7 @@ export default function Register() {
               register={register}
               error={errors.confirmPassword}
             />
+            <TermsAndConditions />
             <button
               className="mt-3 rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:scale-105 hover:bg-purple-700 disabled:bg-gray-700"
               type="submit"

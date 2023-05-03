@@ -7,6 +7,10 @@
   "confirmPassword": "Підтвердження пароля",
   "logIn": "Зареєструватися",
 
+  "accept": "Я приймаю положення та умови",
+  "termsAndConditionsTitle": "Положення та умови",
+  "closeTermsAndConditionsButton": "Закрити",
+
   "requiredField": "Це поле обов'язкове",
   "passwordMismatch": "Паролі не співпадають",
   "passwordTooShort": "Пароль має містити мінімум 8 символів",

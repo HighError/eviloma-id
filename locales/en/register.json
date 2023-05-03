@@ -7,6 +7,10 @@
   "confirmPassword": "Confirm Password",
   "logIn": "Sign Up",
 
+  "accept": "I accept the terms and conditions",
+  "termsAndConditionsTitle": "Terms and conditions",
+  "closeTermsAndConditionsButton": "Close",
+
   "requiredField": "This field is required",
   "passwordMismatch": "Passwords do not match",
   "passwordTooShort": "Password must contain at least 8 characters",
