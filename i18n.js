@@ -9,5 +9,6 @@ module.exports = {
     '/login': ['login'],
     '/register': ['register'],
     '/services': ['services'],
+    '/edit': ['edit'],
   },
 };

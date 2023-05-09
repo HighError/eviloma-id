@@ -55,3 +55,13 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 50px rgba(67, 67, 67, 1) inset;
   -webkit-text-fill-color: #f7f7f7;
 }
+
+h2{
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h3{
+  font-size: 24px;
+  font-weight: 500;
+}

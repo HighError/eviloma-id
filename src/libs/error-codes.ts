@@ -18,6 +18,8 @@ export default function getErrorMessage(tNotification: Translate, code: string) 
       return tNotification('invalidId');
     case 'ERR_SERVER':
       return tNotification('serverError');
+    case 'ERR_LOGIN_ALREADY_EXISTS':
+      return tNotification('loginAlreadyExists');
     default:
       return tNotification('notFound');
   }

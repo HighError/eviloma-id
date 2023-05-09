@@ -10,5 +10,8 @@
  "paramsMissing": "Один або декілька параметрів не задано",
  "invalidId": "Невірний ID",
  "registerLoginExists": "Користувач з таким Login вже зареєстрований",
- "registerEmailExists": "Користувач з таким Email вже зареєстрований"
+ "registerEmailExists": "Користувач з таким Email вже зареєстрований",
+
+ "loginAlreadyExists": "Такий логін вже зареєстрований",
+ "successfulChangeUsername": "Успішно змінено логін"
 }

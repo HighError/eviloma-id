@@ -10,5 +10,8 @@
   "paramsMissing": "One or more parameters are not specified",
   "invalidId": "Invalid ID",
   "registerLoginExists": "The user with this Login is already registered",
-  "registerEmailExists": "The user with this Email is already registered"
+  "registerEmailExists": "The user with this Email is already registered",
+
+  "loginAlreadyExists": "This login is already taken",
+  "successfulChangeUsername": "Successfully changed username"
 }
