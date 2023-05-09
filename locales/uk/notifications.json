@@ -13,5 +13,11 @@
  "registerEmailExists": "Користувач з таким Email вже зареєстрований",
 
  "loginAlreadyExists": "Такий логін вже зареєстрований",
- "successfulChangeUsername": "Успішно змінено логін"
+ "successfulChangeUsername": "Успішно змінено логін",
+
+ "wrongPassword": "Невірний пароль",
+ "mismatchPassword": "Паролі не співпадають",
+ "passwordTooShort": "Пароль має містити мінімум 8 символів",
+ "oldPassCantMatchNewPass": "Старий пароль не може бути таким же як і новий",
+ "successfulChangePassword": "Успішно змінено пароль"
 }

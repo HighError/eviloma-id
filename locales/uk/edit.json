@@ -2,10 +2,17 @@
   "title": "Eviloma ID - Редагування профіля",
   "h3": "Редагування профіля",
 
-  "buttonEditUsername": "Змінили логін",
+  "buttonEditUsername": "Змінити логін",
   "editUsernameTitle": "Зміна логіну",
   "currentUsername": "Поточний логін",
   "enterNewUsername": "Введіть новий логін",
+
+  "buttonEditPassword": "Змінити пароль",
+  "editPasswordTitle": "Зміна пароля",
+  "enterOldPassword": "Введіть старий пароль",
+  "enterNewPassword": "Введіть новий пароль",
+  "enterConfirmPassword": "Введіть повторний пароль",
+
 
   "buttonEdit": "Змінити",
   "buttonCancel": "Відмінити"

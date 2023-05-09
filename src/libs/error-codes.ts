@@ -10,7 +10,7 @@ export default function getErrorMessage(tNotification: Translate, code: string) 
       return tNotification('paramsMissing');
     case 'ERR_LOGIN_EXISTS':
       return tNotification('registerLoginExists');
-    case 'ERR_PASSWORD_EXISTS':
+    case 'ERR_EMAIL_EXISTS':
       return tNotification('registerEmailExists');
     case 'ERR_UNKNOWN':
       return tNotification('unknownError');
@@ -20,6 +20,10 @@ export default function getErrorMessage(tNotification: Translate, code: string) 
       return tNotification('serverError');
     case 'ERR_LOGIN_ALREADY_EXISTS':
       return tNotification('loginAlreadyExists');
+    case 'ERR_WRONG_PASSWORD':
+      return tNotification('wrongPassword');
+    case 'ERR_PASSWORD_MISMATCH':
+      return tNotification('mismatchPassword');
     default:
       return tNotification('notFound');
   }
