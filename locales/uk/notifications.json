@@ -19,5 +19,5 @@
  "mismatchPassword": "Паролі не співпадають",
  "passwordTooShort": "Пароль має містити мінімум 8 символів",
  "oldPassCantMatchNewPass": "Старий пароль не може бути таким же як і новий",
- "successfulChangePassword": "Успішно змінено пароль"
+ "successfullyChangedPassword": "Успішно змінено пароль"
 }

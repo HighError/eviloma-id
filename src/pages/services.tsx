@@ -7,10 +7,9 @@ import getServices from '@/libs/getServices';
 
 export default function Services() {
   const { t } = useTranslation('services');
-  const [isLoading, setIsLoading] = React.useState(false);
   const services = getServices();
   return (
-    <Layout isLoading={isLoading} setIsLoading={setIsLoading} title={t('title')}>
+    <Layout title={t('title')}>
       <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 ">
         {services.map((service) => (
           <ServiceCard

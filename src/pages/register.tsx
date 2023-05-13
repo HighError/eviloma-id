@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import React, { useState } from 'react';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
@@ -15,6 +15,7 @@ import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import OnlyForNotAuth from '@/components/routesControllers/OnlyForNotAuth';
 import TermsAndConditions from '@/components/TermsAndConditions';
 import getErrorMessage from '@/libs/error-codes';
+import useLoading from '@/stores/useLoading';
 
 type Inputs = {
   email: string;
@@ -25,7 +26,7 @@ type Inputs = {
 export default function Register() {
   const { t } = useTranslation('register');
   const { t: tNotification } = useTranslation('notifications');
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, setIsLoading } = useLoading();
 
   const schema = yup
     .object({

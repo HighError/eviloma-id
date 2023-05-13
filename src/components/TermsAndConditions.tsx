@@ -19,7 +19,7 @@ export default function TermsAndConditions() {
       }
     }),
       300;
-  }, [isOpen]);
+  }, [isOpen, refContainer]);
 
   return (
     <>

@@ -1,36 +1,27 @@
 import { Dialog, Transition } from '@headlessui/react';
 import axios from 'axios';
 import useTranslation from 'next-translate/useTranslation';
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
 
 import { UserContext } from '@/contexts/userContext';
 import getErrorMessage from '@/libs/error-codes';
-
-interface IProps {
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import useLoading from '@/stores/useLoading';
 
 interface IData {
   username: string;
 }
 
-export default function ChangeUsername({ isLoading, setIsLoading }: IProps) {
+export default function ChangeUsername() {
+  const { isLoading, setIsLoading } = useLoading();
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(UserContext);
   const { t } = useTranslation('edit');
   const { t: tNotification } = useTranslation('notifications');
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm<IData>();
+  const { register, handleSubmit, reset } = useForm<IData>();
   function closeModal() {
     setIsOpen(false);
   }

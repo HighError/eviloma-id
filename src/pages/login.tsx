@@ -5,7 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
@@ -18,6 +18,7 @@ import OnlyForNotAuth from '@/components/routesControllers/OnlyForNotAuth';
 import SocialButton from '@/components/SocialButton';
 import getCallbackErrorMessage from '@/libs/callback-errors';
 import getErrorMessage from '@/libs/error-codes';
+import useLoading from '@/stores/useLoading';
 
 type Inputs = {
   username: string;
@@ -25,10 +26,10 @@ type Inputs = {
 };
 
 export default function Login() {
+  const { isLoading, setIsLoading } = useLoading();
   const router = useRouter();
   const { t } = useTranslation('login');
   const { t: tNotification } = useTranslation('notifications');
-  const [isLoading, setIsLoading] = useState(false);
   let callback_error = router.query['callback_error'];
 
   const schema = yup

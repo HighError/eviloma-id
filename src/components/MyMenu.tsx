@@ -8,12 +8,10 @@ import React, { Fragment } from 'react';
 import toast from 'react-hot-toast';
 import { mutate } from 'swr';
 
-interface IProps {
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import useLoading from '@/stores/useLoading';
 
-export default function MyMenu({ isLoading, setIsLoading }: IProps) {
+export default function MyMenu() {
+  const { isLoading, setIsLoading } = useLoading();
   const { t: tNotification } = useTranslation('notifications');
   const { t: tMenu } = useTranslation('menu');
   async function logout() {

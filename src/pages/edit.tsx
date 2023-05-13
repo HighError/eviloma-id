@@ -6,14 +6,13 @@ import ChangePassword from '@/components/profileEditModule/ChangePassword';
 import ChangeUsername from '@/components/profileEditModule/ChangeUsername';
 
 export default function Edit() {
-  const [isLoading, setIsLoading] = React.useState(false);
   const { t } = useTranslation('edit');
   return (
-    <Layout isLoading={isLoading} setIsLoading={setIsLoading} title={t('title')}>
+    <Layout title={t('title')}>
       <div className="mx-auto flex max-w-lg flex-col gap-3 rounded-lg bg-gray-800 p-3">
         <h2 className="text-center">{t('h3')}</h2>
-        <ChangeUsername isLoading={isLoading} setIsLoading={setIsLoading} />
-        <ChangePassword isLoading={isLoading} setIsLoading={setIsLoading} />
+        <ChangeUsername />
+        <ChangePassword />
       </div>
     </Layout>
   );

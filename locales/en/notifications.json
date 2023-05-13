@@ -19,5 +19,5 @@
   "mismatchPassword": "Passwords don't match",
   "passwordTooShort": "Password is too short (min. 8 characters)",
   "oldPassCantMatchNewPass": "Old password can't be the same as new password",
-  "successfulChangePassword": "Successfully changed password"
+  "successfullyChangedPassword": "Successfully changed password"
 }
