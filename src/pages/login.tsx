@@ -1,7 +1,7 @@
 import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
@@ -48,11 +48,14 @@ export default function Login() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
     try {
-      const res = await axios.post('/api/auth/login', data);
+      await axios.post('/api/auth/login', data);
       await mutate('/api/user');
+      setIsLoading(false);
       toast.success(tNotification('loginSuccessful'));
-    } catch (err: any) {
-      toast.error(tNotification(getErrorMessage(tNotification, err.response?.data as string) ?? 'unknownError'));
+    } catch (err) {
+      toast.error(
+        tNotification(getErrorMessage(tNotification, (err as AxiosError).response?.data as string) ?? 'unknownError')
+      );
       setIsLoading(false);
     }
   };
@@ -60,6 +63,7 @@ export default function Login() {
   useEffect(() => {
     if (callback_error) {
       toast.error(getCallbackErrorMessage(callback_error as string));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       callback_error = undefined;
     }
   }, [callback_error]);
@@ -67,7 +71,7 @@ export default function Login() {
   return (
     <AnimatedLayout title={t('title')}>
       <OnlyForNotAuth>
-        <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-800 p-4 shadow-lg shadow-gray-900 tablet:px-8 tablet:py-6">
+        <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-900 p-4 shadow-lg shadow-black tablet:px-8 tablet:py-6">
           <h2 className="text-center text-3xl font-semibold">{t('titleH3')}</h2>
           <form className="mt-2 flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -80,19 +84,19 @@ export default function Login() {
             />
             <PasswordInput id="password" label={t('password')} register={register} error={errors.password} />
             <button
-              className="mt-3 rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:scale-105 hover:bg-purple-700 disabled:bg-gray-700"
+              className="mt-3 rounded-lg bg-purple-800 px-3 py-2 duration-300 enabled:hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-800"
               type="submit"
               disabled={isLoading}
             >
               {t('logIn')}
             </button>
           </form>
-          <div className="my-2 h-[1px] w-full rounded-full bg-gray-50" />
+          <div className="my-2 h-0.5 w-full rounded-full bg-gray-50" />
           <div className="grid grid-cols-6 gap-3">
             <SocialButton isLoading={true} onClick={() => Router.push('#')} icon={faGoogle} />
             <SocialButton isLoading={isLoading} onClick={() => Router.push('/api/auth/discord')} icon={faDiscord} />
           </div>
-          <div className="my-2 h-[1px] w-full rounded-full bg-gray-50" />
+          <div className="my-2 h-0.5 w-full rounded-full bg-gray-50" />
           <div className="text-right">
             {t('toRegister1')}
             <Link className="underline duration-300 hover:text-purple-500" href="/register">

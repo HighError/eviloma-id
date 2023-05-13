@@ -63,7 +63,7 @@ export default function TermsAndConditions() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-2xl overflow-hidden rounded-2xl border-2 border-gray-700 bg-gray-800 p-6 text-left align-middle shadow-2xl transition-all">
+                <Dialog.Panel className="w-full max-w-2xl overflow-hidden rounded-2xl border-2 border-gray-800 bg-gray-900 p-6 text-left align-middle shadow-2xl transition-all">
                   <Dialog.Title as="h3" className="text-xl font-medium leading-6">
                     {t('termsAndConditionsTitle')}
                   </Dialog.Title>
@@ -98,7 +98,7 @@ export default function TermsAndConditions() {
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-[transparent] bg-purple-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                      className="rounded-md border border-transparent bg-purple-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
                       onClick={() => setIsOpen(false)}
                     >
                       {t('closeTermsAndConditionsButton')}

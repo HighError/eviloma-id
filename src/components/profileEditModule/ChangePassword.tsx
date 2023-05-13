@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -49,12 +49,14 @@ export default function ChangePassword() {
       return;
     }
     try {
-      const res = await axios.post('/api/profile/password', { ...data });
+      await axios.post('/api/profile/password', { ...data });
       await mutate('/api/user');
       toast.success(tNotification('successfullyChangedPassword'));
       closeModal();
-    } catch (err: any) {
-      toast.error(tNotification(getErrorMessage(tNotification, err.response?.data as string) ?? 'unknownError'));
+    } catch (err) {
+      toast.error(
+        tNotification(getErrorMessage(tNotification, (err as AxiosError).response?.data as string) ?? 'unknownError')
+      );
     } finally {
       setIsLoading(false);
     }
@@ -105,7 +107,7 @@ export default function ChangePassword() {
                         <input
                           id="oldPass"
                           type="password"
-                          className="w-full rounded-lg border-2 border-gray-50 bg-[transparent] px-3 py-2"
+                          className="w-full rounded-lg border-2 border-gray-700 bg-gray-800 px-3 py-2 outline-none duration-300 focus-within:border-purple-800"
                           {...register('oldPass', { required: true })}
                         />
                       </label>
@@ -116,7 +118,7 @@ export default function ChangePassword() {
                         <input
                           id="newPass"
                           type="password"
-                          className="w-full rounded-lg border-2 border-gray-50 bg-[transparent] px-3 py-2"
+                          className="w-full rounded-lg border-2 border-gray-700 bg-gray-800 px-3 py-2 outline-none duration-300 focus-within:border-purple-800"
                           {...register('newPass', { required: true })}
                         />
                       </label>
@@ -127,7 +129,7 @@ export default function ChangePassword() {
                         <input
                           id="confirmPass"
                           type="password"
-                          className="w-full rounded-lg border-2 border-gray-50 bg-[transparent] px-3 py-2"
+                          className="w-full rounded-lg border-2 border-gray-700 bg-gray-800 px-3 py-2 outline-none duration-300 focus-within:border-purple-800"
                           {...register('confirmPass', { required: true })}
                         />
                       </label>
@@ -135,14 +137,16 @@ export default function ChangePassword() {
                     <div className="mt-4 flex flex-row-reverse gap-4">
                       <button
                         type="submit"
-                        className="justify-center rounded-md bg-purple-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-purple-700"
+                        disabled={isLoading}
+                        className="justify-center rounded-md bg-purple-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-800"
                       >
                         {t('buttonEdit')}
                       </button>
                       <button
                         type="button"
-                        className="justify-center rounded-md bg-red-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-red-700"
+                        className="justify-center rounded-md bg-red-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-gray-800"
                         onClick={closeModal}
+                        disabled={isLoading}
                       >
                         {t('buttonCancel')}
                       </button>

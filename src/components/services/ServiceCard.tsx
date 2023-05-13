@@ -17,7 +17,7 @@ interface IProps {
 export default function ServiceCard({ title, description, image, href, btnDisable, btnText }: IProps) {
   const { t } = useTranslation('services');
   return (
-    <div className="rounded-lg border-4 border-gray-700 bg-gray-700 shadow-2xl shadow-gray-900">
+    <div className="rounded-lg border-4 border-gray-800 bg-gray-900 shadow-2xl shadow-gray-900">
       <div className="relative h-32 w-full">
         <Image src={image} alt="alt" fill className="overflow-hidden rounded-t-lg object-cover" />
       </div>

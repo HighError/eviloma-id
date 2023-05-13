@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment, useContext, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -34,12 +34,14 @@ export default function ChangeUsername() {
   const Submit: SubmitHandler<IData> = async (data) => {
     setIsLoading(true);
     try {
-      const res = await axios.post('/api/profile/username', { ...data });
+      await axios.post('/api/profile/username', { ...data });
       await mutate('/api/user');
       toast.success(tNotification('successfulChangeUsername'));
       closeModal();
-    } catch (err: any) {
-      toast.error(tNotification(getErrorMessage(tNotification, err.response?.data as string) ?? 'unknownError'));
+    } catch (err) {
+      toast.error(
+        tNotification(getErrorMessage(tNotification, (err as AxiosError).response?.data as string) ?? 'unknownError')
+      );
     } finally {
       setIsLoading(false);
     }
@@ -81,7 +83,7 @@ export default function ChangeUsername() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-gray-900 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title as="h3">{t('editUsernameTitle')}</Dialog.Title>
                   <p className="text-sm">
                     {t('currentUsername')}: <span className="font-medium">{user?.username ?? ''}</span>
@@ -96,7 +98,7 @@ export default function ChangeUsername() {
                           required
                           min={3}
                           max={20}
-                          className="w-full rounded-lg border-2 border-gray-50 bg-[transparent] px-3 py-2"
+                          className="w-full rounded-lg border-2 border-gray-700 bg-gray-800 px-3 py-2 outline-none duration-300 focus-within:border-purple-800"
                           {...register('username', { required: true })}
                         />
                       </label>
@@ -104,14 +106,16 @@ export default function ChangeUsername() {
                     <div className="mt-4 flex flex-row-reverse gap-4">
                       <button
                         type="submit"
-                        className="justify-center rounded-md bg-purple-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-purple-700"
+                        disabled={isLoading}
+                        className="justify-center rounded-md bg-purple-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-800"
                       >
                         {t('buttonEdit')}
                       </button>
                       <button
                         type="button"
-                        className="justify-center rounded-md bg-red-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-red-700"
+                        className="justify-center rounded-md bg-red-800 px-4 py-2 text-sm font-medium duration-300 hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-gray-800"
                         onClick={closeModal}
+                        disabled={isLoading}
                       >
                         {t('buttonCancel')}
                       </button>

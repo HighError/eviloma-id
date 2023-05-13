@@ -10,5 +10,6 @@ module.exports = {
     '/register': ['register'],
     '/services': ['services'],
     '/edit': ['edit'],
+    '/connections': ['connections'],
   },
 };
