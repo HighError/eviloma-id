@@ -18,10 +18,10 @@ export default nextConnect()
   .get(async (req: NextApiRequestWithSession, res: NextApiResponse) => {
     try {
       const oldSession = await getLoginSession(req);
-      const user = await authenticate('discord', req, res);
+      const user = await authenticate('discord', req, res).catch(() => null);
 
       if (!user) {
-        throw new Error();
+        return res.redirect(308, `/login?err=ERR_DISCORD_ACCOUNT_NOT_FOUND`);
       }
 
       const session = { id: user.id };
@@ -29,10 +29,10 @@ export default nextConnect()
       await setLoginSession(res, session);
 
       if (!oldSession) {
-        return res.redirect(308, `/`);
+        return res.redirect(308, `/?msg=LOGIN_SUCCESS`);
       }
-      return res.redirect(308, `/connections?callback_msg=discord`);
+      return res.redirect(308, `/connections?msg=DISCORD_SUCCESS`);
     } catch (err) {
-      return res.redirect(308, `/login?callback_error=discord`);
+      return res.redirect(308, `/login?err=ERR_SERVER`);
     }
   });

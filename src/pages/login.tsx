@@ -2,8 +2,10 @@ import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios, { AxiosError } from 'axios';
+import * as cookie from 'cookie';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
+import { useReCaptcha } from 'next-recaptcha-v3';
 import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -16,8 +18,8 @@ import PasswordInput from '@/components/inputs/Passwordinput';
 import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import OnlyForNotAuth from '@/components/routesControllers/OnlyForNotAuth';
 import SocialButton from '@/components/SocialButton';
-import getCallbackErrorMessage from '@/libs/callback-errors';
 import getErrorMessage from '@/libs/error-codes';
+import getMessage from '@/libs/msg-code';
 import useLoading from '@/stores/useLoading';
 
 type Inputs = {
@@ -27,10 +29,9 @@ type Inputs = {
 
 export default function Login() {
   const { isLoading, setIsLoading } = useLoading();
-  const router = useRouter();
   const { t } = useTranslation('login');
   const { t: tNotification } = useTranslation('notifications');
-  let callback_error = router.query['callback_error'];
+  const { executeRecaptcha } = useReCaptcha();
 
   const schema = yup
     .object({
@@ -48,7 +49,8 @@ export default function Login() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
     try {
-      await axios.post('/api/auth/login', data);
+      const captcha = await executeRecaptcha('form_submit');
+      await axios.post('/api/auth/login', { ...data, captcha });
       await mutate('/api/user');
       setIsLoading(false);
       toast.success(tNotification('loginSuccessful'));
@@ -59,14 +61,6 @@ export default function Login() {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (callback_error) {
-      toast.error(getCallbackErrorMessage(callback_error as string));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      callback_error = undefined;
-    }
-  }, [callback_error]);
 
   return (
     <AnimatedLayout title={t('title')}>

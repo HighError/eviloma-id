@@ -5,6 +5,7 @@ import nextConnect from 'next-connect';
 
 import { setLoginSession } from '@/libs/auth';
 import corsOptionsDelegate from '@/libs/cors';
+import verifyReCaptcha from '@/libs/re-captcha';
 import User from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
@@ -13,7 +14,12 @@ export default nextConnect()
   .options((res: NextApiResponse) => res.status(204).end())
   .post(async (req: NextApiRequestWithSession, res: NextApiResponse) => {
     try {
-      const { username, email, password } = req.body;
+      const { captcha, username, email, password } = req.body;
+      const verifyCaptcha = await verifyReCaptcha(captcha ?? '');
+
+      if (!verifyCaptcha.data.success) {
+        throw new Error('ERR_INVALID_CAPTCHA');
+      }
       if (!username || !password) {
         return res.status(400).send('ERR_MISSING_PARAMS');
       }

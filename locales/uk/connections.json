@@ -1,3 +1,6 @@
 {
-  "title": "Eviloma ID - З'єднання"
+  "title": "Eviloma ID - З'єднання",
+
+  "connectButton": "З'єднати",
+  "disconnectButton": "Від'єднати"
 }

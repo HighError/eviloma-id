@@ -11,7 +11,7 @@ const options: Discord.StrategyOptionsWithRequest = {
   passReqToCallback: true,
   clientID: process.env.DISCORD_CLIENT_ID ?? '',
   clientSecret: process.env.DISCORD_CLIENT_SECRET ?? '',
-  callbackURL: 'https://id.eviloma.org/api/auth/discord/callback',
+  callbackURL: `${process.env.HOSTNAME}/api/auth/discord/callback`,
   scope: scopes,
 };
 
@@ -27,7 +27,7 @@ export const discordStrategy = new Discord.Strategy(options, async function (
   const user = await User.findOne({ discord: profile.id });
 
   if (!user && !session) {
-    return done(Error('Користувача з таким Discord не знайдено'));
+    return done(null, undefined);
   }
   if (!user && session) {
     const activeUser = await User.findById(session.id);

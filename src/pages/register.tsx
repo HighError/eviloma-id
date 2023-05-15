@@ -2,6 +2,7 @@ import { faAt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
+import { useReCaptcha } from 'next-recaptcha-v3';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -27,6 +28,7 @@ export default function Register() {
   const { t } = useTranslation('register');
   const { t: tNotification } = useTranslation('notifications');
   const { isLoading, setIsLoading } = useLoading();
+  const { executeRecaptcha } = useReCaptcha();
 
   const schema = yup
     .object({
@@ -46,7 +48,8 @@ export default function Register() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
     try {
-      await axios.post('/api/auth/register', data);
+      const captcha = await executeRecaptcha('form_submit');
+      await axios.post('/api/auth/register', { ...data, captcha });
       await mutate('/api/user');
       toast.success(tNotification('loginSuccessful'));
     } catch (err) {

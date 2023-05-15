@@ -2,7 +2,7 @@ import { Translate } from 'next-translate';
 
 export default function getErrorMessage(tNotification: Translate, code: string) {
   switch (code) {
-    case 'ERR_DISCORD_BOT_FOUND':
+    case 'ERR_DISCORD_ACCOUNT_NOT_FOUND':
       return tNotification('discordAccountNotFound');
     case 'ERR_INVALID_LOGIN_OR_PASSWORD':
       return tNotification('invalidLoginOrPassword');
@@ -24,6 +24,8 @@ export default function getErrorMessage(tNotification: Translate, code: string) 
       return tNotification('wrongPassword');
     case 'ERR_PASSWORD_MISMATCH':
       return tNotification('mismatchPassword');
+    case 'ERR_INVALID_CAPTCHA':
+      return tNotification('invalidCaptcha');
     default:
       return tNotification('notFound');
   }

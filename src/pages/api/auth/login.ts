@@ -6,6 +6,7 @@ import passport from 'passport';
 import { setLoginSession } from '@/libs/auth';
 import corsOptionsDelegate from '@/libs/cors';
 import { localStrategy } from '@/libs/passport-local';
+import verifyReCaptcha from '@/libs/re-captcha';
 import { IUser } from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
@@ -28,6 +29,13 @@ export default nextConnect()
   .use(passport.initialize())
   .post(async (req: NextApiRequestWithSession, res: NextApiResponse) => {
     try {
+      const { captcha } = req.body;
+      const verifyCaptcha = await verifyReCaptcha(captcha ?? '');
+
+      if (!verifyCaptcha.data.success) {
+        throw new Error('ERR_INVALID_CAPTCHA');
+      }
+
       const user = await authenticate('local', req, res);
 
       if (!user) {
