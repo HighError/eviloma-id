@@ -1,0 +1,23 @@
+{
+  "title": "Eviloma ID - Реєстрація",
+  "titleH3": "Реєстрація",
+  "email": "E-mail",
+  "username": "Логін",
+  "password": "Пароль",
+  "confirmPassword": "Підтвердження пароля",
+  "logIn": "Зареєструватися",
+
+  "accept": "Я приймаю положення та умови",
+  "termsAndConditionsTitle": "Положення та умови",
+  "closeTermsAndConditionsButton": "Закрити",
+
+  "requiredField": "Це поле обов'язкове",
+  "passwordMismatch": "Паролі не співпадають",
+  "passwordTooShort": "Пароль має містити мінімум 8 символів",
+  "usernameTooShort": "Логін має містити мінімум 3 символи",
+  "usernameTooLong": "Логін має містити максимум 20 символів",
+  "invalidEmail": "Невірний формат електронної пошти",
+
+  "toLogin1": "Маєте аккаунт?",
+  "toLogin2": "Увійти"
+}

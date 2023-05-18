@@ -1,0 +1,23 @@
+{
+  "title": "Eviloma ID - Sign Up",
+  "titleH3": "Sign Up",
+  "email": "E-mail",
+  "username": "Username",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "logIn": "Sign Up",
+
+  "accept": "I accept the terms and conditions",
+  "termsAndConditionsTitle": "Terms and conditions",
+  "closeTermsAndConditionsButton": "Close",
+
+  "requiredField": "This field is required",
+  "passwordMismatch": "Passwords do not match",
+  "passwordTooShort": "Password must contain at least 8 characters",
+  "usernameTooShort": "Username must contain at least 3 characters",
+  "usernameTooLong": "Username must contain at most 20 characters",
+  "invalidEmail": "Invalid email format",
+
+  "toLogin1": "Have an account?",
+  "toLogin2": "Log In"
+}

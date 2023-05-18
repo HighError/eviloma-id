@@ -21,10 +21,10 @@ const Input = ({ id, label, type, placeholder, icon, rightIcon, error, register 
     <div>
       <label className="select-none" htmlFor={id}>
         {label}:
-        <div className="flex h-12 w-full flex-row items-center rounded-lg border-2 border-gray-800 px-1 py-3 focus-within:border-purple-800">
+        <div className="flex h-12 w-full flex-row items-center rounded-lg border-2 border-gray-700 bg-gray-800 px-1 py-3 focus-within:border-purple-800">
           {icon && <FontAwesomeIcon className="w-10" icon={icon} />}
           <input
-            className="flex-1 bg-[transparent] px-1 placeholder:text-gray-400 focus:outline-none"
+            className="flex-1 bg-transparent px-1 placeholder:text-gray-400 focus:outline-none"
             placeholder={placeholder}
             id={id}
             type={type}

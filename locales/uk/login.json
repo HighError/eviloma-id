@@ -1,0 +1,11 @@
+{
+  "title": "Eviloma ID - Вхід",
+  "titleH3": "Вхід",
+  "username": "Логін",
+  "password": "Пароль",
+  "logIn": "Увійти",
+  "requiredField": "Це поле обов'язкове",
+
+  "toRegister1": "Не зареєстрований користувач?",
+  "toRegister2": "Зареєструватися"
+}

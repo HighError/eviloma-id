@@ -5,3 +5,6 @@ yarn.lock
 package-lock.json
 public
 .github
+locales
+*.md
+*.css

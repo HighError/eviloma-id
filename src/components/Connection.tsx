@@ -1,63 +1,56 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faLink, faUnlink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import Router from 'next/router';
-import React, { useContext } from 'react';
-import { toast } from 'react-hot-toast';
+import useTranslation from 'next-translate/useTranslation';
+import React from 'react';
+import toast from 'react-hot-toast';
 import { mutate } from 'swr';
 
-import { UserContext } from '@/contexts/userContext';
+import useLoading from '@/stores/useLoading';
 
 interface IProps {
-  icon: IconProp;
   title: string;
   slug: string;
+  icon: IconProp;
+  status: string | undefined;
 }
-
-const Connection = ({ icon, title, slug }: IProps) => {
-  const { user } = useContext(UserContext);
-
-  async function unlink() {
+export default function Connection({ title, slug, icon, status }: IProps) {
+  const { isLoading, setIsLoading } = useLoading();
+  const { t } = useTranslation('connections');
+  const { t: tNotification } = useTranslation('notifications');
+  async function disconnect() {
+    setIsLoading(true);
     try {
       await axios.delete(`/api/connections/${slug}/unlink`);
       await mutate('/api/user');
-      toast.success('Успіх!');
+      toast.success(tNotification('disconnectSuccessful'));
     } catch (err) {
-      toast.error('Помилка серверу!');
+      toast.error(tNotification('serverError'));
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
-    <div className="rounded-lg bg-gray-800 px-5 py-3">
+    <div className="flex flex-col items-center rounded-lg border-2 border-gray-800 px-4 py-2 tablet:flex-row tablet:justify-between">
       <div className="flex flex-row items-center gap-3">
-        <div className="rounded-lg bg-gray-500 p-2">
-          <FontAwesomeIcon icon={icon} />
-        </div>
-        <div className="text-xl font-medium">{title}</div>
+        <FontAwesomeIcon icon={icon} className="h-8 w-8" />
+        <h3>{title}</h3>
       </div>
-      {user?.discord && <div className="mt-2">ID: {user.discord}</div>}
-      {!user?.discord && (
+      <div className="mt-3 flex flex-col items-center gap-3 tablet:mt-0 tablet:flex-row tablet:gap-8">
+        <div>{status ?? ''}</div>
         <button
-          disabled={false}
-          className="mt-3 flex w-full flex-row items-center justify-center gap-2 rounded-lg bg-purple-800 p-3 duration-300 hover:bg-purple-700 disabled:bg-gray-700"
-          onClick={() => Router.push('/api/auth/discord')}
+          className={`${
+            status ? 'bg-red-700 hover:bg-red-600' : 'bg-purple-700 hover:bg-purple-600'
+          } rounded-lg  px-4 py-2 duration-300  enabled:hover:scale-105 disabled:cursor-not-allowed disabled:bg-gray-800`}
+          disabled={isLoading}
+          onClick={() => {
+            status ? disconnect() : Router.push(`/api/auth/${slug}`);
+          }}
         >
-          <FontAwesomeIcon icon={faLink} />
-          <div>З&apos;єднати</div>
+          {status ? t('disconnectButton') : t('connectButton')}
         </button>
-      )}
-      {user?.discord && (
-        <button
-          disabled={false}
-          className="mt-3 flex w-full flex-row items-center justify-center gap-2 rounded-lg bg-purple-800 p-3 duration-300 hover:bg-purple-700 disabled:bg-gray-700"
-          onClick={() => unlink()}
-        >
-          <FontAwesomeIcon icon={faUnlink} />
-          <div>Від&apos;єднати</div>
-        </button>
-      )}
+      </div>
     </div>
   );
-};
-
-export default Connection;
+}

@@ -1,0 +1,28 @@
+{
+ "successfulExit": "Успішний вихід",
+ "serverError": "Помилка серверу",
+ "loginSuccessful": "Успішний вхід",
+ "registerSuccessful": "Успішна реєстрація",
+ "unknownError": "Невідома помилка",
+ "invalidCaptcha": "Помилка Captcha",
+
+ "discordAccountNotFound": "Користувача з таким Discord не знайдено",
+ "invalidLoginOrPassword": "Невірний логін або пароль",
+ "paramsMissing": "Один або декілька параметрів не задано",
+ "invalidId": "Невірний ID",
+ "registerLoginExists": "Користувач з таким Login вже зареєстрований",
+ "registerEmailExists": "Користувач з таким Email вже зареєстрований",
+
+ "loginAlreadyExists": "Такий логін вже зареєстрований",
+ "successfulChangeUsername": "Успішно змінено логін",
+
+ "wrongPassword": "Невірний пароль",
+ "mismatchPassword": "Паролі не співпадають",
+ "passwordTooShort": "Пароль має містити мінімум 8 символів",
+ "oldPassCantMatchNewPass": "Старий пароль не може бути таким же як і новий",
+ "successfullyChangedPassword": "Успішно змінено пароль",
+
+ "disconnectSuccessful": "Успішне від'єднання",
+
+ "discordSuccessfullyConnected": "Успішне з'єднання з Discord"
+}

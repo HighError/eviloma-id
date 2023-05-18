@@ -1,23 +1,21 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
-import Header from '@/components/Header';
+import Connection from '@/components/Connection';
+import Layout from '@/components/layouts/Layout';
+import { UserContext } from '@/contexts/userContext';
 
-import Connection from '../components/Connection';
-import Layout from '../components/Layout';
-import OnlyForAuth from '../components/routesControllers/OnlyForAuth';
-
-export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
+export default function Connections() {
+  const { user } = useContext(UserContext);
 
   return (
-    <Layout title="Eviloma ID - З'єднання">
-      <OnlyForAuth>
-        <Header isLoading={isLoading} setIsLoading={setIsLoading} />
-        <div className="grid grid-cols-1 gap-6 px-4 pb-3 pt-24 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4">
-          <Connection icon={faDiscord} title="Discord" slug="discord" />
+    <Layout title="Connections">
+      <div className="mx-auto mt-5 max-w-sm rounded-lg bg-gray-900 px-4 py-2 tablet:max-w-2xl">
+        <h2 className="mt-3 text-center">Connections</h2>
+        <div className="mt-4 flex flex-col gap-3">
+          <Connection title="Discord" slug="discord" icon={faDiscord} status={user?.discord ?? undefined} />
         </div>
-      </OnlyForAuth>
+      </div>
     </Layout>
   );
 }

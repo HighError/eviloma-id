@@ -1,0 +1,19 @@
+{
+  "title": "Eviloma ID - Edit Profile",
+  "h3": "Edit Profile",
+
+  "buttonEditUsername": "Edit username",
+  "editUsernameTitle": "Edit username",
+  "currentUsername": "Current username",
+  "enterNewUsername": "Enter new username",
+
+  "buttonEditPassword": "Edit password",
+  "editPasswordTitle": "Edit password",
+  "enterOldPassword": "Enter old password",
+  "enterNewPassword": "Enter new password",
+  "enterConfirmPassword": "Enter confirm password",
+
+  "buttonEdit": "Edit",
+  "buttonCancel": "Cancel"
+
+}
