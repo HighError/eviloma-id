@@ -4,20 +4,19 @@
   "loginSuccessful": "Login successful",
   "registerSuccessful": "Registration successful",
   "unknownError": "Unknown error",
-
   "discordAccountNotFound": "No user found with this Discord",
   "invalidLoginOrPassword": "Invalid login or password",
   "paramsMissing": "One or more parameters are not specified",
   "invalidId": "Invalid ID",
   "registerLoginExists": "The user with this Login is already registered",
   "registerEmailExists": "The user with this Email is already registered",
-
   "loginAlreadyExists": "This login is already taken",
   "successfulChangeUsername": "Successfully changed username",
-
   "wrongPassword": "Wrong password",
   "mismatchPassword": "Passwords don't match",
   "passwordTooShort": "Password is too short (min. 8 characters)",
   "oldPassCantMatchNewPass": "Old password can't be the same as new password",
-  "successfullyChangedPassword": "Successfully changed password"
+  "successfullyChangedPassword": "Successfully changed password",
+  "disconnectSuccessful": "Successful disconnection",
+  "discordSuccessfullyConnected": "Successfully connected to Discord"
 }

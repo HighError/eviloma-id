@@ -29,7 +29,7 @@ export default function Index() {
           setDiscord(t('discordConnectedButFailLoadingName'));
         });
     }
-  }, [user]);
+  }, [user, t]);
 
   return (
     <Layout title={t('title')} disablePadding>

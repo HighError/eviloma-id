@@ -89,6 +89,12 @@ export default function TermsAndConditions() {
                             className: 'mb-2 text-shadow-md',
                           },
                         },
+                        a: {
+                          component: MyParagraph,
+                          props: {
+                            className: 'text-purple-400 hover:text-purple-300 duration-300 inline cursor-pointer',
+                          },
+                        },
                       },
                     }}
                   >

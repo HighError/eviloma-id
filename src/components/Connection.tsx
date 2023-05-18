@@ -1,5 +1,4 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import Router from 'next/router';

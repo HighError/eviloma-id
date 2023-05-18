@@ -2,12 +2,11 @@ import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios, { AxiosError } from 'axios';
-import * as cookie from 'cookie';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useReCaptcha } from 'next-recaptcha-v3';
 import useTranslation from 'next-translate/useTranslation';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
@@ -19,7 +18,6 @@ import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import OnlyForNotAuth from '@/components/routesControllers/OnlyForNotAuth';
 import SocialButton from '@/components/SocialButton';
 import getErrorMessage from '@/libs/error-codes';
-import getMessage from '@/libs/msg-code';
 import useLoading from '@/stores/useLoading';
 
 type Inputs = {
