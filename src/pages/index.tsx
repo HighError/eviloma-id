@@ -1,35 +1,35 @@
 import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faAt, faLock } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 import md5 from 'md5';
 import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 
 import Layout from '@/components/layouts/Layout';
 import ProfileData from '@/components/ProfileData';
-import { UserContext } from '@/contexts/userContext';
+import withAuthMiddleware from '@/middlewares/client/withAuth';
+import useUser from '@/stores/useUser';
 
-export default function Index() {
+function Index() {
   const { t } = useTranslation('profile');
-  const { user } = useContext(UserContext);
-  const [discord, setDiscord] = React.useState('...');
-
-  useEffect(() => {
-    if (!user?.discord) {
-      setDiscord(t('discordDontConnected'));
-    } else {
-      axios
-        .get(`https://discordlookup.mesavirep.xyz/v1/user/${user.discord}`)
-        .then((res) => {
-          setDiscord(res.data.tag);
-        })
-        .catch((err) => {
-          console.log(err);
-          setDiscord(t('discordConnectedButFailLoadingName'));
-        });
-    }
-  }, [user, t]);
+  const { user, discord } = useUser();
+  // const [discord, setDiscord] = React.useState('...');
+  //
+  // useEffect(() => {
+  //   if (!user?.discord) {
+  //     setDiscord(t('discordDontConnected'));
+  //   } else {
+  //     axios
+  //       .get(`https://discordlookup.mesavirep.xyz/v1/user/${user.discord}`)
+  //       .then((res) => {
+  //         setDiscord(res.data.tag);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         setDiscord(t('discordConnectedButFailLoadingName'));
+  //       });
+  //   }
+  // }, [user, t]);
 
   return (
     <Layout title={t('title')} disablePadding>
@@ -51,9 +51,14 @@ export default function Index() {
           <ProfileData icon={faAt} data={user?.email} />
           <ProfileData icon={faLock} data={t('privateProfile')} />
           <ProfileData icon={faGoogle} data={t('comingSoon')} />
-          <ProfileData icon={faDiscord} data={discord} />
+          <ProfileData
+            icon={faDiscord}
+            data={discord.error ? t('discordConnectedButFailLoadingName') : discord.data ?? t('discordDontConnected')}
+          />
         </div>
       </div>
     </Layout>
   );
 }
+
+export default withAuthMiddleware(Index);

@@ -1,12 +1,11 @@
 import bcrypt from 'bcryptjs';
 import Local from 'passport-local';
 
+import dbConnect from '@/libs/db';
 import { usernameRegexp } from '@/libs/regexps';
 import User from '@/models/User';
 
-import dbConnect from './db';
-
-export const localStrategy = new Local.Strategy(async function (username: string, password: string, done) {
+const localStrategy = new Local.Strategy(async function (username: string, password: string, done) {
   await dbConnect();
   const user = await User.findOne({ username: { $regex: usernameRegexp(username) } }).select('+password');
   if (!user) {
@@ -21,3 +20,5 @@ export const localStrategy = new Local.Strategy(async function (username: string
 
   return done(null, user);
 });
+
+export default localStrategy;

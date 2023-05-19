@@ -1,8 +1,9 @@
 import { create } from 'zustand';
-type Store = {
+
+interface Store {
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
-};
+}
 
 const useLoading = create<Store>((set) => ({
   isLoading: false,

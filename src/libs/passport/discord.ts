@@ -1,9 +1,8 @@
 import Discord from 'passport-discord';
 
 import { getLoginSession } from '@/libs/auth';
+import dbConnect from '@/libs/db';
 import User from '@/models/User';
-
-import dbConnect from './db';
 
 const scopes = ['identify', 'connections'];
 
@@ -15,13 +14,7 @@ const options: Discord.StrategyOptionsWithRequest = {
   scope: scopes,
 };
 
-export const discordStrategy = new Discord.Strategy(options, async function (
-  req,
-  accessToken,
-  refreshToken,
-  profile,
-  done
-) {
+const discordStrategy = new Discord.Strategy(options, async function (req, accessToken, refreshToken, profile, done) {
   await dbConnect();
   const session = await getLoginSession(req);
   const user = await User.findOne({ discord: profile.id });
@@ -39,3 +32,5 @@ export const discordStrategy = new Discord.Strategy(options, async function (
     return done(null, user);
   }
 });
+
+export default discordStrategy;

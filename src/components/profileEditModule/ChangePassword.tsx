@@ -4,10 +4,10 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { mutate } from 'swr';
 
 import getErrorMessage from '@/libs/error-codes';
 import useLoading from '@/stores/useLoading';
+import useUser from '@/stores/useUser';
 
 interface IData {
   oldPass: string;
@@ -20,8 +20,10 @@ export default function ChangePassword() {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation('edit');
   const { t: tNotification } = useTranslation('notifications');
+  const updateUser = useUser((state) => state.updateUser);
 
   const { register, handleSubmit, reset } = useForm<IData>();
+
   function closeModal() {
     setIsOpen(false);
   }
@@ -50,7 +52,7 @@ export default function ChangePassword() {
     }
     try {
       await axios.post('/api/profile/password', { ...data });
-      await mutate('/api/user');
+      await updateUser();
       toast.success(tNotification('successfullyChangedPassword'));
       closeModal();
     } catch (err) {

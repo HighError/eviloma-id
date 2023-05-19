@@ -4,8 +4,9 @@ import React from 'react';
 import Layout from '@/components/layouts/Layout';
 import ChangePassword from '@/components/profileEditModule/ChangePassword';
 import ChangeUsername from '@/components/profileEditModule/ChangeUsername';
+import withAuthMiddleware from '@/middlewares/client/withAuth';
 
-export default function Edit() {
+function Edit() {
   const { t } = useTranslation('edit');
   return (
     <Layout title={t('title')}>
@@ -17,3 +18,5 @@ export default function Edit() {
     </Layout>
   );
 }
+
+export default withAuthMiddleware(Edit);

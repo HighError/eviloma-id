@@ -4,8 +4,9 @@ import React from 'react';
 import Layout from '@/components/layouts/Layout';
 import ServiceCard from '@/components/services/ServiceCard';
 import getServices from '@/libs/get-services';
+import withAuthMiddleware from '@/middlewares/client/withAuth';
 
-export default function Services() {
+function Services() {
   const { t } = useTranslation('services');
   const services = getServices();
   return (
@@ -26,3 +27,5 @@ export default function Services() {
     </Layout>
   );
 }
+
+export default withAuthMiddleware(Services);

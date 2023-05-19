@@ -1,48 +1,38 @@
-import cors from 'cors';
 import { NextApiResponse } from 'next';
-import { createRouter } from 'next-connect';
 
-import CustomError from '@/classes/CustomError';
 import { getLoginSession } from '@/libs/auth';
-import corsOptionsDelegate from '@/libs/cors';
 import dbConnect from '@/libs/db';
+import corsMiddleware from '@/middlewares/server/cors';
 import User from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
-const router = createRouter<NextApiRequestWithSession, NextApiResponse>();
+const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => {
+  const method = req.method;
 
-router.use(cors(corsOptionsDelegate));
-router.delete(async (req: NextApiRequestWithSession, res: NextApiResponse) => {
-  try {
-    await dbConnect();
-    const session = await getLoginSession(req);
-    if (!session || !session.id) {
-      return res.status(401).end();
+  if (method === 'DELETE') {
+    try {
+      await dbConnect();
+      const session = await getLoginSession(req);
+      if (!session || !session.id) {
+        return res.status(401).end();
+      }
+      const user = await User.findById(session.id);
+
+      if (!user) {
+        return res.status(401).end();
+      }
+
+      user.discord = null;
+
+      await user.save();
+
+      return res.status(200).end();
+    } catch (err) {
+      return res.status(500).end('ERR_SERVER');
     }
-    const user = await User.findById(session.id);
-
-    if (!user) {
-      return res.status(401).end();
-    }
-
-    user.discord = null;
-
-    await user.save();
-
-    res.status(200).end();
-  } catch (err) {
-    console.log(err);
-    if (err instanceof CustomError) {
-      return res.status(err.code).send(err.message);
-    }
-    return res.status(500).end('ERR_UNKNOWN');
   }
-});
 
-export default router.handler({
-  onError(err, req, res) {
-    res.status(500).json({
-      error: (err as Error).message,
-    });
-  },
-});
+  return res.status(405).end('Method Not Allowed');
+};
+
+export default corsMiddleware(handler);

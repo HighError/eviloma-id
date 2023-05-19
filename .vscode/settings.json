@@ -8,5 +8,7 @@
   },
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "diffEditor.codeLens": true,
+  "MutableAI.upsell": true
 }

@@ -5,9 +5,9 @@ import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import toast from 'react-hot-toast';
-import { mutate } from 'swr';
 
 import useLoading from '@/stores/useLoading';
+import useUser from '@/stores/useUser';
 
 interface IProps {
   title: string;
@@ -15,15 +15,18 @@ interface IProps {
   icon: IconProp;
   status: string | undefined;
 }
+
 export default function Connection({ title, slug, icon, status }: IProps) {
   const { isLoading, setIsLoading } = useLoading();
   const { t } = useTranslation('connections');
   const { t: tNotification } = useTranslation('notifications');
+  const updateUser = useUser((state) => state.updateUser);
+
   async function disconnect() {
     setIsLoading(true);
     try {
       await axios.delete(`/api/connections/${slug}/unlink`);
-      await mutate('/api/user');
+      await updateUser();
       toast.success(tNotification('disconnectSuccessful'));
     } catch (err) {
       toast.error(tNotification('serverError'));
@@ -31,6 +34,7 @@ export default function Connection({ title, slug, icon, status }: IProps) {
       setIsLoading(false);
     }
   }
+
   return (
     <div className="flex flex-col items-center rounded-lg border-2 border-gray-800 px-4 py-2 tablet:flex-row tablet:justify-between">
       <div className="flex flex-row items-center gap-3">

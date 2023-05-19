@@ -1,14 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import axios, { AxiosError } from 'axios';
 import useTranslation from 'next-translate/useTranslation';
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { mutate } from 'swr';
 
-import { UserContext } from '@/contexts/userContext';
 import getErrorMessage from '@/libs/error-codes';
 import useLoading from '@/stores/useLoading';
+import useUser from '@/stores/useUser';
 
 interface IData {
   username: string;
@@ -17,11 +16,12 @@ interface IData {
 export default function ChangeUsername() {
   const { isLoading, setIsLoading } = useLoading();
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, updateUser } = useUser();
   const { t } = useTranslation('edit');
   const { t: tNotification } = useTranslation('notifications');
 
   const { register, handleSubmit, reset } = useForm<IData>();
+
   function closeModal() {
     setIsOpen(false);
   }
@@ -35,7 +35,7 @@ export default function ChangeUsername() {
     setIsLoading(true);
     try {
       await axios.post('/api/profile/username', { ...data });
-      await mutate('/api/user');
+      await updateUser();
       toast.success(tNotification('successfulChangeUsername'));
       closeModal();
     } catch (err) {

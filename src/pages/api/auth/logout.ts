@@ -1,28 +1,22 @@
-import cors from 'cors';
 import { NextApiResponse } from 'next';
-import { createRouter } from 'next-connect';
 
 import { removeTokenCookie } from '@/libs/auth-cookies';
-import corsOptionsDelegate from '@/libs/cors';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
-const router = createRouter<NextApiRequestWithSession, NextApiResponse>();
+const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => {
+  const method = req.method;
 
-router.use(cors(corsOptionsDelegate));
-router.post(async (req: NextApiRequestWithSession, res: NextApiResponse) => {
-  try {
-    removeTokenCookie(res);
-    res.writeHead(302, { Location: '/' });
-    res.end();
-  } catch (err) {
-    res.status(500).end();
+  if (method === 'POST') {
+    try {
+      removeTokenCookie(res);
+      res.writeHead(302, { Location: '/' });
+      return res.end();
+    } catch (err) {
+      return res.status(500).end('ERR_SERVER');
+    }
   }
-});
 
-export default router.handler({
-  onError(err, req, res) {
-    res.status(500).json({
-      error: (err as Error).message,
-    });
-  },
-});
+  return res.status(405).end('Method Not Allowed');
+};
+
+export default handler;

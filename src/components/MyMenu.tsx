@@ -6,19 +6,21 @@ import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment } from 'react';
 import toast from 'react-hot-toast';
-import { mutate } from 'swr';
 
 import useLoading from '@/stores/useLoading';
+import useUser from '@/stores/useUser';
 
 export default function MyMenu() {
   const { isLoading, setIsLoading } = useLoading();
   const { t: tNotification } = useTranslation('notifications');
   const { t: tMenu } = useTranslation('menu');
+  const updateUser = useUser((state) => state.updateUser);
+
   async function logout() {
     setIsLoading(true);
     try {
       await axios.post('/api/auth/logout');
-      await mutate('/api/user', { data: null, error: null, isLoading: true });
+      await updateUser();
       setIsLoading(false);
       toast.success(tNotification('successfulExit'));
     } catch (err) {
@@ -26,6 +28,7 @@ export default function MyMenu() {
       setIsLoading(false);
     }
   }
+
   const menuItems = [
     {
       slug: 'links',

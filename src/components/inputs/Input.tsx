@@ -1,11 +1,10 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { HTMLInputTypeAttribute } from 'react';
-import { UseFormRegister } from 'react-hook-form/dist/types';
+import React, { HTMLInputTypeAttribute } from 'react';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form/dist/types';
 import { FieldError } from 'react-hook-form/dist/types/errors';
 
-interface IProps {
+interface IProps<T extends FieldValues = FieldValues> {
   id: string;
   label: string;
   type?: HTMLInputTypeAttribute;
@@ -13,10 +12,19 @@ interface IProps {
   icon?: IconProp;
   rightIcon?: IconProp;
   error?: FieldError;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
 }
 
-const Input = ({ id, label, type, placeholder, icon, rightIcon, error, register }: IProps) => {
+const Input = <T extends FieldValues = FieldValues>({
+  id,
+  label,
+  type,
+  placeholder,
+  icon,
+  rightIcon,
+  error,
+  register,
+}: IProps<T>) => {
   return (
     <div>
       <label className="select-none" htmlFor={id}>
@@ -28,7 +36,7 @@ const Input = ({ id, label, type, placeholder, icon, rightIcon, error, register 
             placeholder={placeholder}
             id={id}
             type={type}
-            {...register(id)}
+            {...register(id as Path<T>)}
             name={id}
           />
           {rightIcon && <FontAwesomeIcon className="w-10" icon={rightIcon} />}

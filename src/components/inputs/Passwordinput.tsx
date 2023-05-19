@@ -1,19 +1,19 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { FieldValues, Path } from 'react-hook-form/dist/types';
 import { FieldError } from 'react-hook-form/dist/types/errors';
 import { UseFormRegister } from 'react-hook-form/dist/types/form';
 
-interface IProps {
+interface IProps<T extends FieldValues = FieldValues> {
   id: string;
   label: string;
   error?: FieldError;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
 }
 
-const PasswordInput = ({ id, label, error, register }: IProps) => {
+const PasswordInput = <T extends FieldValues = FieldValues>({ id, label, error, register }: IProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -27,7 +27,7 @@ const PasswordInput = ({ id, label, error, register }: IProps) => {
             placeholder="********"
             id={id}
             type={showPassword ? 'text' : 'password'}
-            {...register(id)}
+            {...register(id as Path<T>)}
             name={id}
           />
           <FontAwesomeIcon
