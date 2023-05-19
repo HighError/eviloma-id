@@ -22,7 +22,7 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
         return res.status(401).end();
       }
 
-      res.status(200).json({ user });
+      return res.status(200).json({ user });
     } catch (err) {
       return res.status(500).end('ERR_SERVER');
     }

@@ -27,7 +27,6 @@ const useUser = create<Store>((set) => ({
     try {
       const { data } = await axios.get('/api/user');
       const discord = await updateDiscord((data.user as IUser).discord);
-      console.log(discord);
       set({ user: data.user as IUser, error: false, isLoading: false, discord });
     } catch (err) {
       set({ user: null, error: true, isLoading: false });
