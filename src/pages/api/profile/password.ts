@@ -1,27 +1,17 @@
 import bcrypt from 'bcryptjs';
 import { NextApiResponse } from 'next';
 
-import { getLoginSession } from '@/libs/auth';
 import dbConnect from '@/libs/db';
-import User from '@/models/User';
+import authMiddleware from '@/middlewares/server/auth';
+import { IUser } from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
-const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => {
+const handler = async (req: NextApiRequestWithSession, res: NextApiResponse, user: IUser) => {
   const method = req.method;
 
   if (method === 'POST') {
     try {
       await dbConnect();
-      const session = await getLoginSession(req);
-      if (!session || !session.id) {
-        return res.status(401).end();
-      }
-      const user = await User.findById(session.id).select('+password');
-
-      if (!user) {
-        return res.status(401).end();
-      }
-
       const { oldPass, newPass } = req.body;
       if (!oldPass || !newPass) {
         return res.status(400).end('ERR_MISSING_PARAMS');
@@ -46,4 +36,4 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
   return res.status(405).end('Method Not Allowed');
 };
 
-export default handler;
+export default authMiddleware(handler, true);

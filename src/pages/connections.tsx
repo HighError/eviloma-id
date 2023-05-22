@@ -1,4 +1,4 @@
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 
@@ -17,6 +17,7 @@ function Connections() {
         <h2 className="mt-3 text-center">{t('titleH3')}</h2>
         <div className="mt-4 flex flex-col gap-3">
           <Connection title="Discord" slug="discord" icon={faDiscord} status={user?.discord ?? undefined} />
+          <Connection title="Google" slug="google" icon={faGoogle} status={user?.google ?? undefined} />
         </div>
       </div>
     </Layout>

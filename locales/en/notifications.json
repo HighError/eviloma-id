@@ -18,5 +18,7 @@
   "oldPassCantMatchNewPass": "Old password can't be the same as new password",
   "successfullyChangedPassword": "Successfully changed password",
   "disconnectSuccessful": "Successful disconnection",
-  "discordSuccessfullyConnected": "Successfully connected to Discord"
+  "discordSuccessfullyConnected": "Successfully connected to Discord",
+  "googleAccountNotFound": "No user found with this Google Account",
+  "googleSuccessfullyConnected": "Successfully connected to Google"
 }

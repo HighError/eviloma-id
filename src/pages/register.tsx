@@ -1,6 +1,6 @@
 import { faAt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useReCaptcha } from 'next-recaptcha-v3';
 import useTranslation from 'next-translate/useTranslation';
@@ -13,6 +13,7 @@ import Input from '@/components/inputs/Input';
 import PasswordInput from '@/components/inputs/Passwordinput';
 import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import TermsAndConditions from '@/components/TermsAndConditions';
+import axios from '@/libs/axios';
 import getErrorMessage from '@/libs/error-codes';
 import withoutAuthMiddleware from '@/middlewares/client/withoutAuth';
 import useLoading from '@/stores/useLoading';

@@ -1,10 +1,9 @@
 import { NextApiResponse } from 'next';
 
-import { setLoginSession } from '@/libs/auth';
+import { setLoginSession } from '@/libs/auth-cookies';
 import { localAuth } from '@/libs/passport';
-import verifyReCaptcha from '@/libs/re-captcha';
-import corsMiddleware from '@/middlewares/server/cors';
 import passportMiddleware from '@/middlewares/server/passport';
+import reCaptchaMiddleware from '@/middlewares/server/reCaptcha';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
 const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => {
@@ -12,13 +11,6 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
 
   if (method === 'POST') {
     try {
-      const { captcha } = req.body;
-      const verifyCaptcha = await verifyReCaptcha(captcha ?? '');
-
-      if (!verifyCaptcha.data.success) {
-        return res.status(422).end('ERR_INVALID_CAPTCHA');
-      }
-
       const user = await localAuth(req, res);
 
       if (!user) {
@@ -38,4 +30,4 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
   return res.status(405).end('Method Not Allowed');
 };
 
-export default corsMiddleware(passportMiddleware(handler));
+export default passportMiddleware(reCaptchaMiddleware(handler));

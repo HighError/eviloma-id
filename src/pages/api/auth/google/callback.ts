@@ -11,10 +11,10 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
   if (method === 'GET') {
     try {
       const oldSession = await getLoginSession(req.cookies || req.headers.cookie || []);
-      const user = await authenticate('discord', req, res).catch(() => null);
+      const user = await authenticate('google', req, res).catch(() => null);
 
       if (!user) {
-        return res.redirect(308, `/login?err=ERR_DISCORD_ACCOUNT_NOT_FOUND`);
+        return res.redirect(308, `/login?err=ERR_GOOGLE_ACCOUNT_NOT_FOUND`);
       }
 
       const session = { id: user.id };
@@ -24,7 +24,7 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
       if (!oldSession) {
         return res.redirect(308, `/?msg=LOGIN_SUCCESS`);
       }
-      return res.redirect(308, `/connections?msg=DISCORD_SUCCESS`);
+      return res.redirect(308, `/connections?msg=GOOGLE_SUCCESS`);
     } catch (err) {
       return res.redirect(308, `/login?err=ERR_SERVER`);
     }

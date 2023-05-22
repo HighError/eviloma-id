@@ -1,12 +1,12 @@
 import { faBars, faBoxesStacked, faLink, faPen, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
-import axios from 'axios';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment } from 'react';
 import toast from 'react-hot-toast';
 
+import axios from '@/libs/axios';
 import useLoading from '@/stores/useLoading';
 import useUser from '@/stores/useUser';
 

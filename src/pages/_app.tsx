@@ -7,6 +7,7 @@ import { Raleway } from 'next/font/google';
 import { useRouter } from 'next/router';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import useTranslation from 'next-translate/useTranslation';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 import React, { useEffect } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 
@@ -38,6 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}>
         <div>
           <main className={raleway.className}>
+            <GoogleAnalytics trackPageViews />
             <Component {...pageProps} />
           </main>
           <Toaster

@@ -1,11 +1,15 @@
 import { Dialog, Transition } from '@headlessui/react';
 import Markdown from 'markdown-to-jsx';
 import useTranslation from 'next-translate/useTranslation';
-import React, { createRef, Fragment, useEffect, useState } from 'react';
+import React, { createRef, Fragment, ReactNode, useEffect, useState } from 'react';
 
 import terms from '@/TermsAndConditions.md';
 
-const MyParagraph = ({ children, ...props }: any) => <div {...props}>{children}</div>;
+interface IProps {
+  children: ReactNode;
+}
+
+const MyParagraph = ({ children, ...props }: IProps) => <div {...props}>{children}</div>;
 
 export default function TermsAndConditions() {
   const [isOpen, setIsOpen] = useState(false);

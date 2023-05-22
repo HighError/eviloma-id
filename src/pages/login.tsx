@@ -1,7 +1,7 @@
 import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useReCaptcha } from 'next-recaptcha-v3';
@@ -15,6 +15,7 @@ import Input from '@/components/inputs/Input';
 import PasswordInput from '@/components/inputs/Passwordinput';
 import AnimatedLayout from '@/components/layouts/AnimatedLayout';
 import SocialButton from '@/components/SocialButton';
+import axios from '@/libs/axios';
 import getErrorMessage from '@/libs/error-codes';
 import withoutAuthMiddleware from '@/middlewares/client/withoutAuth';
 import useLoading from '@/stores/useLoading';
@@ -85,8 +86,18 @@ function Login() {
         </form>
         <div className="my-2 h-0.5 w-full rounded-full bg-gray-50" />
         <div className="grid grid-cols-6 gap-3">
-          <SocialButton isLoading={true} onClick={() => Router.push('#')} icon={faGoogle} />
-          <SocialButton isLoading={isLoading} onClick={() => Router.push('/api/auth/discord')} icon={faDiscord} />
+          <SocialButton
+            isLoading={isLoading}
+            onClick={() => Router.push('/api/auth/google')}
+            icon={faGoogle}
+            className="bg-[#4285F4]"
+          />
+          <SocialButton
+            isLoading={isLoading}
+            onClick={() => Router.push('/api/auth/discord')}
+            icon={faDiscord}
+            className="bg-[#7289da]"
+          />
         </div>
         <div className="my-2 h-0.5 w-full rounded-full bg-gray-50" />
         <div className="text-right">

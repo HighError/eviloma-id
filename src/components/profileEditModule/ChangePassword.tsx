@@ -1,10 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
+import axios from '@/libs/axios';
 import getErrorMessage from '@/libs/error-codes';
 import useLoading from '@/stores/useLoading';
 import useUser from '@/stores/useUser';

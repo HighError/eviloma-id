@@ -6,6 +6,7 @@ export interface IUser extends Document {
   password: string;
   private: boolean;
   discord: string | null;
+  google: string | null;
 }
 
 const userSchema = new mongoose.Schema({
@@ -30,6 +31,10 @@ const userSchema = new mongoose.Schema({
     default: true,
   },
   discord: {
+    type: String,
+    default: null,
+  },
+  google: {
     type: String,
     default: null,
   },

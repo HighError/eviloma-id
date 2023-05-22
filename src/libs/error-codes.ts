@@ -4,6 +4,8 @@ export default function getErrorMessage(tNotification: Translate, code: string) 
   switch (code) {
     case 'ERR_DISCORD_ACCOUNT_NOT_FOUND':
       return tNotification('discordAccountNotFound');
+    case 'ERR_GOOGLE_ACCOUNT_NOT_FOUND':
+      return tNotification('googleAccountNotFound');
     case 'ERR_INVALID_LOGIN_OR_PASSWORD':
       return tNotification('invalidLoginOrPassword');
     case 'ERR_MISSING_PARAMS':

@@ -1,9 +1,8 @@
 import bcrypt from 'bcryptjs';
 import { NextApiResponse } from 'next';
 
-import { setLoginSession } from '@/libs/auth';
-import verifyReCaptcha from '@/libs/re-captcha';
-import corsMiddleware from '@/middlewares/server/cors';
+import { setLoginSession } from '@/libs/auth-cookies';
+import reCaptchaMiddleware from '@/middlewares/server/reCaptcha';
 import User from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
@@ -12,12 +11,7 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
 
   if (method === 'POST') {
     try {
-      const { captcha, username, email, password } = req.body;
-      const verifyCaptcha = await verifyReCaptcha(captcha ?? '');
-
-      if (!verifyCaptcha.data.success) {
-        return res.status(422).end('ERR_INVALID_CAPTCHA');
-      }
+      const { username, email, password } = req.body;
       if (!username || !password) {
         return res.status(400).send('ERR_MISSING_PARAMS');
       }
@@ -50,4 +44,4 @@ const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => 
   return res.status(405).end('Method Not Allowed');
 };
 
-export default corsMiddleware(handler);
+export default reCaptchaMiddleware(handler);

@@ -1,13 +1,32 @@
-import { parse, serialize } from 'cookie';
+import Iron from '@hapi/iron';
+import { serialize } from 'cookie';
 import { NextApiResponse } from 'next';
 
-import { NextApiRequestWithSession } from '@/types/NextApiRequest';
-
+const TOKEN_SECRET = process.env.TOKEN_SECRET ?? '';
 const TOKEN_NAME = 'token';
 
 export const MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
-export function setTokenCookie(res: NextApiResponse, token: string) {
+export async function getLoginSession(cookie: Record<string, unknown>) {
+  const token = cookie[TOKEN_NAME];
+
+  if (!token || typeof token !== 'string') return;
+
+  const session = await Iron.unseal(token, TOKEN_SECRET, Iron.defaults);
+  const expiresAt = session.createdAt + session.maxAge * 1000;
+
+  if (Date.now() > expiresAt) {
+    throw new Error('Session expired');
+  }
+
+  return session;
+}
+
+export async function setLoginSession(res: NextApiResponse, session: Record<string, unknown>) {
+  const createdAt = Date.now();
+  const obj = { ...session, createdAt, maxAge: MAX_AGE };
+  const token = await Iron.seal(obj, TOKEN_SECRET, Iron.defaults);
+
   const cookie = serialize(TOKEN_NAME, token, {
     domain: process.env.COOKIE_DOMAIN,
     maxAge: MAX_AGE,
@@ -29,15 +48,4 @@ export function removeTokenCookie(res: NextApiResponse) {
   });
 
   res.setHeader('Set-Cookie', cookie);
-}
-
-export function parseCookies(req: NextApiRequestWithSession) {
-  if (req.cookies) return req.cookies;
-  const cookie = req.headers?.cookie;
-  return parse(cookie || '');
-}
-
-export function getTokenCookie(req: NextApiRequestWithSession) {
-  const cookies = parseCookies(req);
-  return cookies[TOKEN_NAME];
 }

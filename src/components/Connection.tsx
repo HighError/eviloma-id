@@ -1,11 +1,11 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import toast from 'react-hot-toast';
 
+import axios from '@/libs/axios';
 import useLoading from '@/stores/useLoading';
 import useUser from '@/stores/useUser';
 

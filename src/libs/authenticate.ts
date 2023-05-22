@@ -4,7 +4,7 @@ import passport from 'passport';
 import { IUser } from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
-type allowMethods = 'local' | 'discord';
+type allowMethods = 'local' | 'discord' | 'google';
 
 const authenticate = (method: allowMethods, req: NextApiRequestWithSession, res: NextApiResponse): Promise<IUser> =>
   new Promise((resolve, reject) => {
