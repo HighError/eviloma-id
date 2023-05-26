@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import verifyReCaptcha from '@/libs/re-captcha';
+import verifyReCaptcha from '@/libs/reCaptcha';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
 function reCaptchaMiddleware(handler: (req: NextApiRequestWithSession, res: NextApiResponse) => unknown) {

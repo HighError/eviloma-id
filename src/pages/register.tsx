@@ -1,5 +1,6 @@
-import { faAt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
+import accountIcon from '@iconify/icons-mdi/account';
+import atIcon from '@iconify/icons-mdi/at';
 import { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useReCaptcha } from 'next-recaptcha-v3';
@@ -11,10 +12,9 @@ import * as yup from 'yup';
 
 import Input from '@/components/inputs/Input';
 import PasswordInput from '@/components/inputs/Passwordinput';
-import AnimatedLayout from '@/components/layouts/AnimatedLayout';
-import TermsAndConditions from '@/components/TermsAndConditions';
+import Layout from '@/components/layouts/Layout';
 import axios from '@/libs/axios';
-import getErrorMessage from '@/libs/error-codes';
+import getErrorMessage from '@/libs/errorCodes';
 import withoutAuthMiddleware from '@/middlewares/client/withoutAuth';
 import useLoading from '@/stores/useLoading';
 import useUser from '@/stores/useUser';
@@ -65,7 +65,7 @@ function Register() {
   };
 
   return (
-    <AnimatedLayout title={t('title')}>
+    <Layout title={t('title')}>
       <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-900 p-4 shadow-lg shadow-black tablet:px-8 tablet:py-6">
         <h2 className="text-center text-3xl font-semibold">{t('titleH3')}</h2>
         <form className="mt-2 flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
@@ -73,7 +73,7 @@ function Register() {
             id="email"
             label={t('email')}
             placeholder="username@example.com"
-            icon={faAt}
+            icon={atIcon}
             register={register}
             error={errors.email}
           />
@@ -81,7 +81,7 @@ function Register() {
             id="username"
             label={t('username')}
             placeholder="Username"
-            icon={faUser}
+            icon={accountIcon}
             register={register}
             error={errors.username}
           />
@@ -92,7 +92,18 @@ function Register() {
             register={register}
             error={errors.confirmPassword}
           />
-          <TermsAndConditions />
+          <label className="mt-2 text-center text-sm">
+            <input type="checkbox" className="mr-1" id="terms" required />
+            {t('accept')} [
+            <Link
+              className="inline text-xl text-purple-400 duration-300 hover:text-purple-300"
+              type="button"
+              href="/terms"
+            >
+              ?
+            </Link>
+            ]
+          </label>
           <button
             className="mt-3 rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 enabled:hover:scale-105 disabled:cursor-not-allowed disabled:bg-gray-700"
             type="submit"
@@ -109,7 +120,7 @@ function Register() {
           </Link>
         </div>
       </div>
-    </AnimatedLayout>
+    </Layout>
   );
 }
 

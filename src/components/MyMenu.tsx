@@ -1,6 +1,12 @@
-import { faBars, faBoxesStacked, faLink, faPen, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
+import accountEdit from '@iconify/icons-mdi/account-edit';
+import connectionIcon from '@iconify/icons-mdi/connection';
+import faceManProfile from '@iconify/icons-mdi/face-man-profile';
+import fileAlert from '@iconify/icons-mdi/file-alert';
+import logoutIcon from '@iconify/icons-mdi/logout';
+import menuIcon from '@iconify/icons-mdi/menu';
+import serverIcon from '@iconify/icons-mdi/server';
+import { Icon } from '@iconify/react';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment } from 'react';
@@ -36,7 +42,7 @@ export default function MyMenu() {
         {
           slug: 'profile',
           name: tMenu('profile'),
-          icon: faUser,
+          icon: faceManProfile,
           onClick: () => {
             Router.push('/');
           },
@@ -44,9 +50,17 @@ export default function MyMenu() {
         {
           slug: 'services',
           name: tMenu('services'),
-          icon: faBoxesStacked,
+          icon: serverIcon,
           onClick: () => {
             Router.push('/services');
+          },
+        },
+        {
+          slug: 'terms',
+          name: tMenu('termsAndConditions'),
+          icon: fileAlert,
+          onClick: () => {
+            Router.push('/terms');
           },
         },
       ],
@@ -57,7 +71,7 @@ export default function MyMenu() {
         {
           slug: 'edit-profile',
           name: tMenu('editProfile'),
-          icon: faPen,
+          icon: accountEdit,
           onClick: () => {
             Router.push('/edit');
           },
@@ -65,7 +79,7 @@ export default function MyMenu() {
         {
           slug: 'connections-profile',
           name: tMenu('connectionsProfile'),
-          icon: faLink,
+          icon: connectionIcon,
           onClick: () => {
             Router.push('/connections');
           },
@@ -73,7 +87,7 @@ export default function MyMenu() {
         {
           slug: 'logout',
           name: tMenu('logout'),
-          icon: faRightFromBracket,
+          icon: logoutIcon,
           onClick: () => {
             logout();
           },
@@ -89,8 +103,8 @@ export default function MyMenu() {
           disabled={isLoading}
           className="select-none rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-600"
         >
-          <div>
-            <FontAwesomeIcon icon={faBars} className="mr-2 w-4" /> {tMenu('title')}
+          <div className="flex items-center gap-1">
+            <Icon icon={menuIcon} className="inline text-2xl" /> <span>{tMenu('title')}</span>
           </div>
         </Menu.Button>
         <Transition
@@ -112,7 +126,7 @@ export default function MyMenu() {
                       onClick={item.onClick}
                       className="my-1.5 flex w-full flex-row items-center gap-3 rounded-lg px-3 py-2 duration-300 hover:bg-gray-700 disabled:cursor-not-allowed disabled:hover:bg-gray-600"
                     >
-                      <FontAwesomeIcon icon={item.icon} className="w-6" />
+                      <Icon icon={item.icon} className="w-6 text-2xl" />
                       <div>{item.name}</div>
                     </button>
                   </Menu.Item>

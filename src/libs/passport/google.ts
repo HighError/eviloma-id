@@ -1,6 +1,6 @@
 import Google from 'passport-google-oauth20';
 
-import { getLoginSession } from '@/libs/auth-cookies';
+import { getLoginSession } from '@/libs/authCookies';
 import dbConnect from '@/libs/db';
 import User from '@/models/User';
 

@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { removeTokenCookie } from '@/libs/auth-cookies';
+import { removeTokenCookie } from '@/libs/authCookies';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
 
 const handler = async (req: NextApiRequestWithSession, res: NextApiResponse) => {

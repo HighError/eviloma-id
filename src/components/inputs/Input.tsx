@@ -1,5 +1,4 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon, IconifyIcon } from '@iconify/react';
 import React, { HTMLInputTypeAttribute } from 'react';
 import { FieldValues, Path, UseFormRegister } from 'react-hook-form/dist/types';
 import { FieldError } from 'react-hook-form/dist/types/errors';
@@ -9,8 +8,8 @@ interface IProps<T extends FieldValues = FieldValues> {
   label: string;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
-  icon?: IconProp;
-  rightIcon?: IconProp;
+  icon?: IconifyIcon;
+  rightIcon?: IconifyIcon;
   error?: FieldError;
   register: UseFormRegister<T>;
 }
@@ -30,7 +29,7 @@ const Input = <T extends FieldValues = FieldValues>({
       <label className="select-none" htmlFor={id}>
         {label}:
         <div className="flex h-12 w-full flex-row items-center rounded-lg border-2 border-gray-700 bg-gray-800 px-1 py-3 focus-within:border-purple-800">
-          {icon && <FontAwesomeIcon className="w-10" icon={icon} />}
+          {icon && <Icon icon={icon} className="mx-1 text-2xl" />}
           <input
             className="flex-1 bg-transparent px-1 placeholder:text-gray-400 focus:outline-none"
             placeholder={placeholder}
@@ -39,7 +38,7 @@ const Input = <T extends FieldValues = FieldValues>({
             {...register(id as Path<T>)}
             name={id}
           />
-          {rightIcon && <FontAwesomeIcon className="w-10" icon={rightIcon} />}
+          {rightIcon && <Icon icon={rightIcon} className="mx-1 text-2xl" />}
         </div>
         {error && <div className="text-xs text-red-500">{error.message}</div>}
       </label>

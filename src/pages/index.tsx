@@ -1,5 +1,5 @@
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
-import { faAt, faLock } from '@fortawesome/free-solid-svg-icons';
+import accountLock from '@iconify/icons-mdi/account-lock';
+import atIcon from '@iconify/icons-mdi/at';
 import md5 from 'md5';
 import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
@@ -30,10 +30,10 @@ function Index() {
         <div className="m-auto mt-4 text-2xl font-semibold">{user?.username ?? ''}</div>
         <div className="text-sm text-gray-300">{user?._id ?? ''}</div>
         <div className="mt-3 flex flex-col gap-1 text-gray-300">
-          <ProfileData icon={faAt} data={user?.email} />
-          <ProfileData icon={faLock} data={t('privateProfile')} />
+          <ProfileData icon={atIcon} data={user?.email} />
+          <ProfileData icon={accountLock} data={t('privateProfile')} />
           <ProfileData
-            icon={faDiscord}
+            icon="bxl:discord-alt"
             data={discord.error ? t('discordConnectedButFailLoadingName') : discord.data ?? t('discordDontConnected')}
           />
         </div>

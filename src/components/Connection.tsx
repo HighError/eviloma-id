@@ -1,5 +1,4 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from '@iconify/react';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
@@ -12,7 +11,7 @@ import useUser from '@/stores/useUser';
 interface IProps {
   title: string;
   slug: string;
-  icon: IconProp;
+  icon: string;
   status: string | undefined;
 }
 
@@ -38,7 +37,7 @@ export default function Connection({ title, slug, icon, status }: IProps) {
   return (
     <div className="flex flex-col items-center rounded-lg border-2 border-gray-800 px-4 py-2 tablet:flex-row tablet:justify-between">
       <div className="flex flex-row items-center gap-3">
-        <FontAwesomeIcon icon={icon} className="h-8 w-8" />
+        <Icon icon={icon} className="text-3xl" />
         <h3>{title}</h3>
       </div>
       <div className="mt-3 flex flex-col items-center gap-3 tablet:mt-0 tablet:flex-row tablet:gap-8">

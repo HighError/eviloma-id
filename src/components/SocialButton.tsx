@@ -1,11 +1,10 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from '@iconify/react';
 import React from 'react';
 
 interface IProps {
   isLoading: boolean;
   onClick: () => void;
-  icon: IconProp;
+  icon: string;
   className: string;
 }
 
@@ -16,7 +15,7 @@ export default function SocialButton({ isLoading, onClick, icon, className }: IP
       disabled={isLoading}
       onClick={onClick}
     >
-      <FontAwesomeIcon icon={icon} />
+      <Icon icon={icon} className="text-2xl" />
     </button>
   );
 }

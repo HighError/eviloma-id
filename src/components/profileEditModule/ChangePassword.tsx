@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
 import axios from '@/libs/axios';
-import getErrorMessage from '@/libs/error-codes';
+import getErrorMessage from '@/libs/errorCodes';
 import useLoading from '@/stores/useLoading';
 import useUser from '@/stores/useUser';
 

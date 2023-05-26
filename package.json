@@ -15,14 +15,11 @@
     "typesafe-i18n": "typesafe-i18n"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-brands-svg-icons": "^6.4.0",
-    "@fortawesome/free-regular-svg-icons": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@hapi/iron": "^7.0.1",
     "@headlessui/react": "^1.7.14",
     "@hookform/resolvers": "^3.1.0",
+    "@iconify/icons-mdi": "^1.2.46",
+    "@iconify/react": "^4.1.0",
     "@types/cors": "^2.8.13",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",

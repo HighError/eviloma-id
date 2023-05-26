@@ -1,6 +1,5 @@
-import { faDiscord, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
+import accountIcon from '@iconify/icons-mdi/account';
 import { AxiosError } from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -13,10 +12,10 @@ import * as yup from 'yup';
 
 import Input from '@/components/inputs/Input';
 import PasswordInput from '@/components/inputs/Passwordinput';
-import AnimatedLayout from '@/components/layouts/AnimatedLayout';
+import Layout from '@/components/layouts/Layout';
 import SocialButton from '@/components/SocialButton';
 import axios from '@/libs/axios';
-import getErrorMessage from '@/libs/error-codes';
+import getErrorMessage from '@/libs/errorCodes';
 import withoutAuthMiddleware from '@/middlewares/client/withoutAuth';
 import useLoading from '@/stores/useLoading';
 import useUser from '@/stores/useUser';
@@ -63,7 +62,7 @@ function Login() {
   };
 
   return (
-    <AnimatedLayout title={t('title')}>
+    <Layout title={t('title')}>
       <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-900 p-4 shadow-lg shadow-black tablet:px-8 tablet:py-6">
         <h2 className="text-center text-3xl font-semibold">{t('titleH3')}</h2>
         <form className="mt-2 flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
@@ -71,7 +70,7 @@ function Login() {
             id="username"
             label={t('username')}
             placeholder="Username"
-            icon={faUser}
+            icon={accountIcon}
             register={register}
             error={errors.username}
           />
@@ -89,13 +88,13 @@ function Login() {
           <SocialButton
             isLoading={isLoading}
             onClick={() => Router.push('/api/auth/google')}
-            icon={faGoogle}
+            icon="bxl:google"
             className="bg-[#4285F4]"
           />
           <SocialButton
             isLoading={isLoading}
             onClick={() => Router.push('/api/auth/discord')}
-            icon={faDiscord}
+            icon="bxl:discord-alt"
             className="bg-[#7289da]"
           />
         </div>
@@ -107,7 +106,7 @@ function Login() {
           </Link>
         </div>
       </div>
-    </AnimatedLayout>
+    </Layout>
   );
 }
 

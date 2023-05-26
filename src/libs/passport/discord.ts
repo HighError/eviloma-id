@@ -1,6 +1,6 @@
 import Discord from 'passport-discord';
 
-import { getLoginSession } from '@/libs/auth-cookies';
+import { getLoginSession } from '@/libs/authCookies';
 import dbConnect from '@/libs/db';
 import User from '@/models/User';
 

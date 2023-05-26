@@ -2,14 +2,15 @@ const defaultLocale = process.env.LOCALE ?? 'en';
 
 module.exports = {
   defaultLocale: defaultLocale,
-  locales: [defaultLocale],
+  locales: ['en', 'uk'],
   pages: {
-    '*': ['notifications', 'menu', 'common'],
+    '*': ['notifications', 'menu', 'common', 'languages'],
     '/': ['profile'],
     '/login': ['login'],
     '/register': ['register'],
     '/services': ['services'],
     '/edit': ['edit'],
     '/connections': ['connections'],
+    '/terms': ['terms'],
   },
 };

@@ -4,6 +4,7 @@ import 'react-tooltip/dist/react-tooltip.css';
 import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import { Raleway } from 'next/font/google';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import useTranslation from 'next-translate/useTranslation';
@@ -11,8 +12,8 @@ import { GoogleAnalytics } from 'nextjs-google-analytics';
 import React, { useEffect } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 
-import getErrorMessage from '@/libs/error-codes';
-import getMessage from '@/libs/msg-code';
+import getErrorMessage from '@/libs/errorCodes';
+import getMessage from '@/libs/getMsgCode';
 import useUser from '@/stores/useUser';
 
 const raleway = Raleway({ subsets: ['cyrillic-ext'] });
@@ -37,6 +38,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AnimatePresence mode="wait" initial={false}>
       <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}>
+        <div className="fixed inset-0">
+          <Image
+            src="/background.webp"
+            alt=""
+            fill
+            className="pointer-events-none -z-10 overflow-hidden object-cover object-center"
+          />
+        </div>
         <div>
           <main className={raleway.className}>
             <GoogleAnalytics trackPageViews />

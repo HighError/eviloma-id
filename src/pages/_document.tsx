@@ -6,6 +6,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <script async defer data-website-id={process.env.ANALYTICS_CODE ?? ''} src={process.env.ANALYTICS_URL ?? ''} />
+        <meta name="description" content="Service Authorization Eviloma" />
       </Head>
       <body>
         <Main />

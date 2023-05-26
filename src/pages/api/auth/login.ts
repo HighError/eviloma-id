@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { setLoginSession } from '@/libs/auth-cookies';
+import { setLoginSession } from '@/libs/authCookies';
 import { localAuth } from '@/libs/passport';
 import passportMiddleware from '@/middlewares/server/passport';
 import reCaptchaMiddleware from '@/middlewares/server/reCaptcha';

@@ -3,7 +3,7 @@ import React from 'react';
 
 import Layout from '@/components/layouts/Layout';
 import ServiceCard from '@/components/services/ServiceCard';
-import getServices from '@/libs/get-services';
+import getServices from '@/libs/getServices';
 import withAuthMiddleware from '@/middlewares/client/withAuth';
 
 function Services() {

@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { NextApiResponse } from 'next';
 
-import { setLoginSession } from '@/libs/auth-cookies';
+import { setLoginSession } from '@/libs/authCookies';
 import reCaptchaMiddleware from '@/middlewares/server/reCaptcha';
 import User from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';

@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { getLoginSession, setLoginSession } from '@/libs/auth-cookies';
+import { getLoginSession, setLoginSession } from '@/libs/authCookies';
 import authenticate from '@/libs/authenticate';
 import passportMiddleware from '@/middlewares/server/passport';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';

@@ -1,5 +1,5 @@
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import arrowRightThick from '@iconify/icons-mdi/arrow-right-thick';
+import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
@@ -29,7 +29,7 @@ export default function ServiceCard({ title, description, image, href, btnDisabl
           onClick={() => Router.push(href)}
           disabled={btnDisable}
         >
-          {btnText ?? t('goto')} <FontAwesomeIcon icon={faArrowRight} />
+          {btnText ?? t('goto')} <Icon icon={arrowRightThick} className="text-2xl" />
         </button>
       </div>
     </div>

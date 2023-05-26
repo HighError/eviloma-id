@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { getLoginSession } from '@/libs/auth-cookies';
+import { getLoginSession } from '@/libs/authCookies';
 import dbConnect from '@/libs/db';
 import User, { IUser } from '@/models/User';
 import { NextApiRequestWithSession } from '@/types/NextApiRequest';
