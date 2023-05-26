@@ -21,21 +21,17 @@ export default function Terms() {
   const user = useUser((state) => state.user);
   const { t } = useTranslation('terms');
   return (
-    <Layout title={t('title')} disablePadding={!user}>
+    <Layout title={t('title')}>
       <div className=" rounded-2xl bg-gray-900 p-5">
-        <div className="flex flex-row items-center justify-between">
-          <div className="flex w-full flex-row items-center gap-1">
-            {!user && (
-              <Link
-                className="inline rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700"
-                href="/login"
-              >
-                <Icon icon={keyVariant} className="mr-1 inline text-2xl" />
-                <span>{t(`login`)}</span>
-              </Link>
-            )}
-          </div>
-        </div>
+        {!user && (
+          <Link
+            className="inline-block rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700"
+            href="/login"
+          >
+            <Icon icon={keyVariant} className="mr-1 inline text-2xl" />
+            <span>{t(`login`)}</span>
+          </Link>
+        )}
         <Markdown
           className=" mt-3"
           options={{
