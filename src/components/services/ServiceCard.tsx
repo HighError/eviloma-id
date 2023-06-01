@@ -17,7 +17,7 @@ interface IProps {
 export default function ServiceCard({ title, description, image, href, btnDisable, btnText }: IProps) {
   const { t } = useTranslation('services');
   return (
-    <div className="rounded-lg border-4 border-gray-800 bg-gray-900 shadow-2xl shadow-gray-900">
+    <div className="rounded-lg border-4 border-ctp-overlay0 bg-ctp-surface0 shadow-2xl shadow-ctp-surface1">
       <div className="relative h-32 w-full">
         <Image src={image} alt="alt" fill className="overflow-hidden rounded-t-lg object-cover" />
       </div>
@@ -25,7 +25,7 @@ export default function ServiceCard({ title, description, image, href, btnDisabl
         <h2 className="text-lg font-semibold tablet:text-3xl">{title}</h2>
         <span className="block">{description}</span>
         <button
-          className="ml-auto mr-0 mt-3 flex flex-row items-center justify-center gap-2 rounded-full bg-purple-800 px-4 py-2 font-bold duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-700"
+          className="ml-auto mr-0 mt-3 flex flex-row items-center justify-center gap-3 rounded-lg bg-ctp-mauve px-4 py-2 text-ctp-base duration-300 hover:bg-ctp-pink enabled:hover:scale-105 disabled:cursor-not-allowed disabled:bg-ctp-crust disabled:text-ctp-subtext0"
           onClick={() => Router.push(href)}
           disabled={btnDisable}
         >

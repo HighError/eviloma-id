@@ -34,7 +34,7 @@ export default function LanguageMenu({ locales }: IProps) {
       <Menu>
         <Menu.Button
           disabled={isLoading}
-          className="select-none rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-600"
+          className="select-none rounded-lg bg-ctp-mauve px-3 py-2 text-ctp-base duration-300 hover:bg-ctp-pink disabled:cursor-not-allowed disabled:bg-ctp-crust disabled:text-ctp-subtext0 "
         >
           <Icon icon={earthIcon} className="inline text-2xl" />
         </Menu.Button>
@@ -47,7 +47,7 @@ export default function LanguageMenu({ locales }: IProps) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 top-12 max-h-[75vh] w-max gap-1 overflow-auto rounded-lg bg-gray-900 p-2 shadow-2xl shadow-black tablet:mt-2">
+          <Menu.Items className="absolute right-0 top-12 max-h-[75vh] w-max gap-1 overflow-auto rounded-lg bg-ctp-surface0 p-2 shadow-2xl shadow-black tablet:mt-2">
             {locales.map((locale) => (
               <Menu.Item key={locale}>
                 <button
@@ -55,7 +55,7 @@ export default function LanguageMenu({ locales }: IProps) {
                     await setLanguage(locale);
                     localStorage.setItem('locale', locale);
                   }}
-                  className="my-1.5 flex w-full flex-row items-center gap-3 rounded-lg px-3 py-2 duration-300 hover:bg-gray-700 disabled:cursor-not-allowed disabled:hover:bg-gray-600"
+                  className="my-1.5 flex w-full flex-row items-center gap-3 rounded-lg px-3 py-2 duration-300 hover:bg-ctp-surface1 disabled:cursor-not-allowed disabled:hover:bg-ctp-surface0"
                 >
                   <Icon icon={`circle-flags:${getLanguageCode(locale)}`} />
                   {t(`languages:${locale}`)}

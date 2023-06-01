@@ -12,9 +12,9 @@ function Connections() {
 
   return (
     <Layout title={t('title')}>
-      <div className="mx-auto mt-5 max-w-sm rounded-lg bg-gray-900 px-4 py-2 tablet:max-w-2xl">
+      <div className="mx-auto mt-5 rounded-lg bg-ctp-surface0 px-4 pb-5 pt-3">
         <h2 className="mt-3 text-center">{t('titleH3')}</h2>
-        <div className="mt-4 flex flex-col gap-3">
+        <div className="mt-2 grid grid-cols-1 gap-8 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4">
           <Connection title="Discord" slug="discord" icon="bxl:discord-alt" status={user?.discord ?? undefined} />
           <Connection title="Google" slug="google" icon="bxl:google" status={user?.google ?? undefined} />
         </div>

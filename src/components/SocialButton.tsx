@@ -5,13 +5,12 @@ interface IProps {
   isLoading: boolean;
   onClick: () => void;
   icon: string;
-  className: string;
 }
 
-export default function SocialButton({ isLoading, onClick, icon, className }: IProps) {
+export default function SocialButton({ isLoading, onClick, icon }: IProps) {
   return (
     <button
-      className={`${className} flex h-10 w-10 items-center justify-center rounded-lg p-2 duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-700`}
+      className={`flex h-10 w-10 items-center justify-center rounded-lg bg-ctp-blue p-2 text-ctp-base duration-300 hover:bg-ctp-sapphire disabled:cursor-not-allowed disabled:bg-ctp-crust disabled:text-ctp-subtext0`}
       disabled={isLoading}
       onClick={onClick}
     >

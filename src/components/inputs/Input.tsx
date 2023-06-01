@@ -28,7 +28,7 @@ const Input = <T extends FieldValues = FieldValues>({
     <div>
       <label className="select-none" htmlFor={id}>
         {label}:
-        <div className="flex h-12 w-full flex-row items-center rounded-lg border-2 border-gray-700 bg-gray-800 px-1 py-3 focus-within:border-purple-800">
+        <div className="flex h-12 w-full flex-row items-center rounded-lg border-2 border-ctp-overlay1 bg-ctp-surface1 px-1 py-3 focus-within:border-ctp-mauve">
           {icon && <Icon icon={icon} className="mx-1 text-2xl" />}
           <input
             className="flex-1 bg-transparent px-1 placeholder:text-gray-400 focus:outline-none"

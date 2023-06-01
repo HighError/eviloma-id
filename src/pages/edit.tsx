@@ -10,10 +10,12 @@ function Edit() {
   const { t } = useTranslation('edit');
   return (
     <Layout title={t('title')}>
-      <div className="mx-auto flex max-w-lg flex-col gap-3 rounded-lg bg-gray-900 p-3">
+      <div className="mx-auto flex flex-col gap-3 rounded-lg bg-ctp-surface0 p-3">
         <h2 className="text-center">{t('h3')}</h2>
-        <ChangeUsername />
-        <ChangePassword />
+        <div className="mt-2 grid grid-cols-1 gap-8 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4">
+          <ChangeUsername />
+          <ChangePassword />
+        </div>
       </div>
     </Layout>
   );

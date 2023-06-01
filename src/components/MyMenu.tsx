@@ -101,7 +101,7 @@ export default function MyMenu() {
       <Menu>
         <Menu.Button
           disabled={isLoading}
-          className="select-none rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-600"
+          className="select-none rounded-lg bg-ctp-mauve px-3 py-2 text-ctp-base duration-300 hover:bg-ctp-pink disabled:cursor-not-allowed disabled:bg-ctp-crust disabled:text-ctp-subtext0"
         >
           <div className="flex items-center gap-1">
             <Icon icon={menuIcon} className="inline text-2xl" /> <span>{tMenu('title')}</span>
@@ -116,7 +116,7 @@ export default function MyMenu() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 top-12 max-h-[75vh] w-max gap-1 divide-y divide-gray-100 overflow-auto rounded-lg bg-gray-900 p-2 shadow-2xl shadow-black tablet:mt-2">
+          <Menu.Items className="absolute right-0 top-12 max-h-[75vh] w-max gap-1 divide-y divide-ctp-overlay0 overflow-auto rounded-lg bg-ctp-surface0 p-2 shadow-2xl shadow-ctp-crust tablet:mt-2">
             {menuItems.map((group) => (
               <div key={group.slug}>
                 {group.items.map((item) => (
@@ -124,7 +124,7 @@ export default function MyMenu() {
                     <button
                       disabled={isLoading}
                       onClick={item.onClick}
-                      className="my-1.5 flex w-full flex-row items-center gap-3 rounded-lg px-3 py-2 duration-300 hover:bg-gray-700 disabled:cursor-not-allowed disabled:hover:bg-gray-600"
+                      className="my-1.5 flex w-full flex-row items-center gap-3 rounded-lg px-3 py-2 duration-300 hover:bg-ctp-surface1 disabled:cursor-not-allowed disabled:hover:bg-ctp-surface0"
                     >
                       <Icon icon={item.icon} className="w-6 text-2xl" />
                       <div>{item.name}</div>

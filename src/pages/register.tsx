@@ -66,7 +66,7 @@ function Register() {
 
   return (
     <Layout title={t('title')}>
-      <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-gray-900 p-4 shadow-lg shadow-black tablet:px-8 tablet:py-6">
+      <div className="absolute left-1/2 top-1/2 flex w-min -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg bg-ctp-surface0 p-4 shadow-lg shadow-black tablet:px-8 tablet:py-6">
         <h2 className="text-center text-3xl font-semibold">{t('titleH3')}</h2>
         <form className="mt-2 flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -96,7 +96,7 @@ function Register() {
             <input type="checkbox" className="mr-1" id="terms" required />
             {t('accept')} [
             <Link
-              className="inline text-xl text-purple-400 duration-300 hover:text-purple-300"
+              className="inline text-xl text-ctp-mauve duration-300 hover:text-ctp-pink"
               type="button"
               href="/terms"
             >
@@ -105,17 +105,17 @@ function Register() {
             ]
           </label>
           <button
-            className="mt-3 rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700 enabled:hover:scale-105 disabled:cursor-not-allowed disabled:bg-gray-700"
+            className="mt-3 flex w-full flex-row items-center justify-center gap-3 rounded-lg bg-ctp-mauve px-4 py-2 text-ctp-base duration-300 hover:bg-ctp-pink enabled:hover:scale-105 disabled:cursor-not-allowed disabled:bg-ctp-crust disabled:text-ctp-subtext0"
             type="submit"
             disabled={isLoading}
           >
             {t('logIn')}
           </button>
         </form>
-        <div className="my-2 h-[1px] w-full rounded-full bg-gray-50" />
+        <div className="my-2 h-[1px] w-full rounded-full bg-ctp-overlay0" />
         <div className="text-right">
           {t('toLogin1')}
-          <Link className="underline duration-300 hover:text-purple-500" href="/login">
+          <Link className="underline duration-300 hover:text-ctp-mauve" href="/login">
             {t('toLogin2')}
           </Link>
         </div>

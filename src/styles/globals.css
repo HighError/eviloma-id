@@ -32,12 +32,11 @@ html {
 
 html,
 body {
-    color: #ebebeb;
+    color: #cdd6f4;
     margin: 0;
     padding: 0;
-    background-color: #000000;
-    /*background: url('/background.webp') fixed left center / cover no-repeat;*/
-    accent-color: #cd009c;
+    background-color: #11111b;
+    accent-color: #cba6f7;
 }
 
 body {

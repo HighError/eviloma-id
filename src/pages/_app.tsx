@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import 'react-tooltip/dist/react-tooltip.css';
 
+import { variants } from '@catppuccin/palette';
 import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import { Raleway } from 'next/font/google';
@@ -57,8 +58,8 @@ export default function App({ Component, pageProps }: AppProps) {
             toastOptions={{
               duration: 5000,
               style: {
-                background: '#1e1e1e',
-                color: '#e7e7e7',
+                background: variants.mocha.surface0.hex,
+                color: variants.mocha.text.hex,
               },
             }}
           />

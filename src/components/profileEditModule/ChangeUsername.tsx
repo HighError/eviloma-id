@@ -1,4 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
+import accountEdit from '@iconify/icons-mdi/account-edit';
+import leadPencil from '@iconify/icons-mdi/lead-pencil';
+import { Icon } from '@iconify/react';
 import { AxiosError } from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 import React, { Fragment, useState } from 'react';
@@ -50,14 +53,20 @@ export default function ChangeUsername() {
 
   return (
     <>
-      <button
-        type="button"
-        disabled={isLoading}
-        onClick={openModal}
-        className="rounded-md bg-purple-800 px-4 py-2 font-medium duration-300 hover:bg-purple-700"
-      >
-        {t('buttonEditUsername')}
-      </button>
+      <div className="flex flex-col rounded-lg border-2 border-ctp-surface2 bg-ctp-surface1 px-3 py-5">
+        <div className="mx-auto mb-4 h-12 w-12 rounded-full bg-ctp-overlay0">
+          <Icon icon={accountEdit} className="m-auto h-full text-center text-3xl text-ctp-mauve" />
+        </div>
+        <button
+          type="button"
+          disabled={isLoading}
+          onClick={openModal}
+          className="mt-auto flex w-full flex-row items-center justify-center gap-3 rounded-lg bg-ctp-mauve px-4 py-2 text-ctp-base duration-300 hover:bg-ctp-pink enabled:hover:scale-105 disabled:cursor-not-allowed disabled:bg-ctp-crust disabled:text-ctp-subtext0"
+        >
+          <Icon icon={leadPencil} className="text-xl" />
+          {t('buttonEditUsername')}
+        </button>
+      </div>
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>

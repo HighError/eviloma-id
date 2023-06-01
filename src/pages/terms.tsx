@@ -22,12 +22,9 @@ export default function Terms() {
   const { t } = useTranslation('terms');
   return (
     <Layout title={t('title')}>
-      <div className=" rounded-2xl bg-gray-900 p-5">
+      <div className=" rounded-2xl bg-ctp-surface0 p-5">
         {!user && (
-          <Link
-            className="inline-block rounded-lg bg-purple-800 px-3 py-2 duration-300 hover:bg-purple-700"
-            href="/login"
-          >
+          <Link className="inline-block rounded-lg bg-ctp-mauve px-3 py-2 duration-300 hover:bg-ctp-pink" href="/login">
             <Icon icon={keyVariant} className="mr-1 inline text-2xl" />
             <span>{t(`login`)}</span>
           </Link>
