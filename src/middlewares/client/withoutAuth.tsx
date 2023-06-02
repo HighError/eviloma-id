@@ -10,7 +10,7 @@ const withoutAuthMiddleware = (Component: NextPage) => {
 
     useEffect(() => {
       if (user && !isLoading) {
-        window.location.replace('/');
+        window.location.replace('/profile');
       }
     }, [isLoading, user]);
 

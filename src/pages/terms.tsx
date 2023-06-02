@@ -1,7 +1,4 @@
-import keyVariant from '@iconify/icons-mdi/key-variant';
-import { Icon } from '@iconify/react';
 import Markdown from 'markdown-to-jsx';
-import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import React, { ReactNode } from 'react';
 
@@ -23,12 +20,6 @@ export default function Terms() {
   return (
     <Layout title={t('title')}>
       <div className=" rounded-2xl bg-ctp-surface0 p-5">
-        {!user && (
-          <Link className="inline-block rounded-lg bg-ctp-mauve px-3 py-2 duration-300 hover:bg-ctp-pink" href="/login">
-            <Icon icon={keyVariant} className="mr-1 inline text-2xl" />
-            <span>{t(`login`)}</span>
-          </Link>
-        )}
         <Markdown
           className=" mt-3"
           options={{

@@ -44,7 +44,7 @@ export default function MyMenu() {
           name: tMenu('profile'),
           icon: faceManProfile,
           onClick: () => {
-            Router.push('/');
+            Router.push('/profile');
           },
         },
         {
