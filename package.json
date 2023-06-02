@@ -29,7 +29,7 @@
     "markdown-to-jsx": "^7.2.0",
     "md5": "^2.3.0",
     "mongoose": "^7.2.0",
-    "next": "^13.4.3",
+    "next": "^13.4.4",
     "next-recaptcha-v3": "^1.1.5",
     "next-translate": "^2.0.5",
     "nextjs-google-analytics": "^2.3.3",
