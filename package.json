@@ -31,7 +31,7 @@
     "mongoose": "^7.2.0",
     "next": "^13.4.4",
     "next-recaptcha-v3": "^1.1.5",
-    "next-translate": "^2.0.5",
+    "next-translate": "^2.0.6",
     "nextjs-google-analytics": "^2.3.3",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
