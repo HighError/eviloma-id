@@ -28,7 +28,7 @@
     "framer-motion": "^10.12.16",
     "markdown-to-jsx": "^7.2.1",
     "md5": "^2.3.0",
-    "mongoose": "^7.2.0",
+    "mongoose": "^7.3.4",
     "next": "^13.4.4",
     "next-recaptcha-v3": "^1.1.5",
     "next-translate": "^2.0.6",
