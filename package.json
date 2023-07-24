@@ -40,7 +40,7 @@
     "raw-loader": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.44.2",
+    "react-hook-form": "^7.45.2",
     "react-hot-toast": "^2.4.1",
     "react-spinners-kit": "^1.9.1",
     "react-tooltip": "^5.13.1",
